@@ -1,0 +1,14 @@
+@import "partials/variables";
+@import "partials/btn.scss";
+@import "partials/navbar.scss";
+@import "partials/spin-item.scss";
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+body{
+  background: $white-color;
+}
