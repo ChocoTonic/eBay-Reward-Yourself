@@ -84,9 +84,29 @@ header {
       grid-template-columns: repeat(3, 250px);
       grid-template-rows: repeat(2, 250px); }
       #categories .top-level-container #categories-wrapper .category-block {
+        position: relative;
         width: 250px;
         height: 250px;
-        border: 1px black solid; }
+        overflow: hidden; }
+        #categories .top-level-container #categories-wrapper .category-block .image {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          opacity: 0.9;
+          top: 0;
+          left: 0;
+          -webkit-transition: all 800ms ease-out;
+          -moz-transition: all 800ms ease-out;
+          -ms-transition: all 800ms ease-out;
+          -o-transition: all 800ms ease-out;
+          transition: all 800ms ease-out; }
+          #categories .top-level-container #categories-wrapper .category-block .image:hover {
+            -webkit-transform: scale(1.2);
+            -moz-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            -o-transform: scale(1.2);
+            transform: scale(1.2);
+            filter: blur(2px); }
 
 #spin-item {
   height: 550px;
