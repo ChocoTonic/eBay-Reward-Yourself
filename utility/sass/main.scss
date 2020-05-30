@@ -1,7 +1,9 @@
 @import "partials/variables";
 @import "partials/btn.scss";
-@import "partials/navbar.scss";
+@import "partials/header.scss";
+@import "partials/intro.scss", "partials/categories.scss";
 @import "partials/spin-item.scss";
+@import "partials/footer.scss";
 
 *{
   margin:0;
@@ -9,6 +11,12 @@
   box-sizing: border-box;
 }
 
-body{
+html, body{
   background: $white-color;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.centered{
+  text-align:center;
 }

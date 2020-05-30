@@ -81,8 +81,11 @@ app.get("/", async (req, res)=>{
       price: 25
     }
   ];  
+
+  const spinItem = items[Math.floor(Math.random() * items.length)];
+
   res.render("pages/index", {
-    items
+    spinItem
   });
 })
 

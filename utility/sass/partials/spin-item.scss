@@ -1,4 +1,5 @@
 #spin-item{
+  padding:2rem 0;
   color: $white-color;
   display: flex;
   flex-direction: column;
@@ -7,9 +8,49 @@
   height: $section-height;
   background: $gray-color;
   .item{
+    display:flex;
+    flex-direction: column;
     height: $section-height *60/100;
-    border: 1px $white-color solid;
+    // border: 1px $white-color solid;
     width: 250px;
+    // background: $white-color;
+    .image-container{
+      height: 90%;
+      // border:1px red solid;
+      .image{
+        height:100%;
+        width:100%;
+      }
+    }
+    .item-footer{
+      position:relative;
+      height:10%;
+      font-size: 1.6rem;
+      font-weight: bold;
+      // border-bottom: 1px $white-color solid; 
+      // background: $light-violet-color;
+      // color:yellow;
+      .price{
+        width:100%;
+        // background:red;
+        position:absolute;
+        bottom:0;
+        left:0;
+      }
+    }
+  }
+  .spin-section-btns{
+    display:flex;
+    flex-direction:row;
+    .btn{
+      margin-right:0.5rem;
+      &:hover{
+        background: $white-color;
+        color: $light-violet-color;
+        border-color: $light-violet-color;
+        font-weight: bold;
+      }
+    }
   }
 }
 
