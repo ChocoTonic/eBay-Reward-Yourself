@@ -4,7 +4,13 @@
   padding: 0.8rem 3rem;
   font-size:1.2rem;
   border:2px $white-color solid;
+  display: block;
+  width: 250px;
   &:hover{
     cursor:pointer;
+    background: $white-color;
+    color: $light-violet-color;
+    border-color: $light-violet-color;
+    font-weight: bold;
   }
 }

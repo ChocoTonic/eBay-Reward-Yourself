@@ -1,6 +1,35 @@
 #intro{
   height: $section-height;
   background: $dark-violet-color;
-  display:flex;
-  flex-direction: row;
+  color: $white-color;
+  .top-level-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    padding:2.5rem 2rem;
+    height: 100%;
+    // border:1px white solid;
+
+    .intro-left-side{
+      // border:1px white solid;
+      display:flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      .btn{
+        margin-bottom:0.5rem;
+      }
+    }
+    .intro-right-side{
+      width:320px;
+      // border:1px white solid;
+      margin-left:1rem;
+      display:flex;
+      flex-direction: row-reverse;
+      
+      .image{
+        height:100%;
+        // border:1px yellow solid;
+      }
+    }
+  }
 }

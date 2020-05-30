@@ -4,44 +4,74 @@
 		<%- include("../partials/head") -%>
 	</head>
 	<body>
-		
-		<div id="app-container">
 			<%- include("../partials/header") %>
 			<main>
 				<section id="intro">
-
-				</section>
-				<section id="categories">
-					
-				</section>
-				<section id="spin-item">
-					<div class="section-title">
-						<h2 class="centered title">DON'T KNOW WHAT TO PICK</h3>
-						<h2 class="centered title">HIT SPIN AND GET YOURSELF A RANDOM REWARD</h3>
-					</div>
-					<div class="item">
-						<div class="item-body image-container">
+					<div class="top-level-container">
+						<div class="intro-left-side">
+							<div class="text">
+								<h3>BECAUSE YOU'VE BEEN WORKING TOO</h3>
+								<h3>HARD...</h3>
+								<h3>IT'S ABOUT TIME FOR A LITTLE REWARD</h3>
+								<h3>AND HEY! DON'T WORRY!</h3>
+								<h3>WE WON'T LET YOU SPEND MORE THAN 30$</h3>
+								<h3>OFFER YOURSELF AN AMAZING GIFT</h3>
+							</div>
+							<div class="intro-btns">
+								<button class="btn">RANDOM GIFT</button>
+								<button class="btn">CATEGORIES</button>
+							</div>
+						</div>
+						<div class="intro-right-side">
 							<img 
 								class="image"
-								src="<%= spinItem.imageUrl %>" 
-								alt="image title here"
+								src="/img/sleepy-guy.jpg" 
+								alt="sleepy guy"
 							>
 						</div>
-						<div class="item-footer price centered">
-								<span class="price"><%= spinItem.price %> $</span>
+					</div>
+				</section>
+				<section id="categories">
+					<div class="top-level-container">
+						<div id="categories-wrapper">
+							<div class="category-block"></div>
+							<div class="category-block"></div>
+							<div class="category-block"></div>
+							<div class="category-block"></div>
+							<div class="category-block"></div>
+							<div class="category-block"></div>
 						</div>
-					</div>	
-					<div class="spin-section-btns">
-						<button class="btn">ORDER NOW</button>
-						<button class="btn">ADD TO CART</button>
-						<button class="btn">SPIN</button>
+					</div>
+				</section>
+				<section id="spin-item">
+					<div class="top-level-container">
+						<div class="section-title">
+							<h2 class="centered title">DON'T KNOW WHAT TO PICK</h3>
+							<h2 class="centered title">HIT SPIN AND GET YOURSELF A RANDOM REWARD</h3>
+						</div>
+						<div class="item">
+							<div class="item-body image-container">
+								<img 
+									class="image"
+									src="<%= spinItem.imageUrl %>" 
+									alt="image title here"
+								>
+							</div>
+							<div class="item-footer price centered">
+									<span class="price"><%= spinItem.price %> $</span>
+							</div>
+						</div>	
+						<div class="spin-section-btns">
+							<button class="btn">ORDER NOW</button>
+							<button class="btn">ADD TO CART</button>
+							<button class="btn">SPIN</button>
+						</div>
 					</div>
 				</section>
 			</main>
 			<footer>
 				<%- include("../partials/footer") -%>
 			</footer>
-		</div>
 
 		<script type="text/javascript" src="/js/main.js"></script>
 	</body>
