@@ -2,12 +2,10 @@
   <div class="top-level-container">
     <nav>
       <ul>
-        <li>HOME</li>
-        <li>CATEGORIES</li>
-        <li>RANDOM-REWARD</li>
-        <li>SEARCH-ITEM</li>
-        <li>ABOUT</li>
-        <li>CONTACT</li>
+        <li><a href="/catalog" class="<% if(path === '/catalog') {%>active<%}%>">HOME</a></li>
+        <li><a href="" class="">SEARCH-ITEM</a></li>
+        <li><a href="/catalog/about" class="<% if(path === '/catalog/about') {%>active<%}%>">ABOUT</a></li>
+        <li><a href="/catalog/contact" class="<% if(path === '/catalog/contact') {%>active<%}%>">CONTACT</a></li>
       </ul>
     </nav>
     <div class="header-title">

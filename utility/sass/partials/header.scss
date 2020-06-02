@@ -7,17 +7,25 @@ header{
       display:flex;
       flex-direction: row;
       justify-content: center;
-      font-size: 1.2rem;
       
       li{
         list-style: none;
-        margin-right: 0.2rem;
-        padding:0.5rem 0.7rem;
-        &:hover{
-          background: $dark-violet-color;
-          color: $white-color;
-          cursor:pointer;
-          font-weight: bold;
+        
+        a{
+          display:block;
+          margin: auto;
+          color: $dark-violet-color;
+          text-decoration:none;
+          margin-right: 0.2rem;
+          padding:0.5rem 0.7rem;
+          font-size: 1.2rem;
+          &:hover, &.active{
+            background: $dark-violet-color;
+            color: $white-color;
+            cursor:pointer;
+            font-weight: bold;
+        }
+        
         }
       }
     }
@@ -25,6 +33,7 @@ header{
   .header-title{
     z-index: 0;
     padding: 0 2rem;
+    width:95%;
     // border:1px black solid;
     margin:0 auto;
     margin-top: -1.5rem;

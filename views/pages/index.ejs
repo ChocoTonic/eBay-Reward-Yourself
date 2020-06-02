@@ -12,9 +12,7 @@
 							<div class="text">
 								<h3>BECAUSE YOU'VE BEEN WORKING TOO</h3>
 								<h3>HARD...</h3>
-								<h3>IT'S ABOUT TIME FOR A LITTLE REWARD</h3>
-								<h3>AND HEY, DON'T WORRY!</h3>
-								<h3>WE WON'T LET YOU SPEND MORE THAN 30$</h3>
+								<h3>IT'S ABOUT TIME FOR A LITTLE REWARD</h3>					
 								<h3>OFFER YOURSELF AN AMAZING GIFT</h3>
 							</div>
 							<div class="intro-btns">
@@ -100,19 +98,19 @@
 				<section id="spin-item">
 					<div class="top-level-container">
 						<div class="section-title">
-							<h2 class="centered title">DON'T KNOW WHAT TO PICK</h3>
-							<h2 class="centered title">HIT SPIN AND GET YOURSELF A RANDOM REWARD</h3>
+							<h2 class="centered title">DON'T LIKE THIS ONE ?</h3>
+							<h2 class="centered title">HIT SPIN TO GENERATE ANOTHER GIFT</h3>
 						</div>
 						<div class="item">
 							<div class="item-body image-container">
 								<img 
 									class="image"
-									src="<%= spinItem.imageUrl %>" 
+									src="<%= item.imageURL %>" 
 									alt="image title here"
 								>
 							</div>
 							<div class="item-footer price centered">
-									<span class="price"><%= spinItem.price %> $</span>
+									<span class="price"><%= item.buyItNowPrice.value %> <%= item.buyItNowPrice.currency %> </span>
 							</div>
 						</div>	
 						<div class="spin-section-btns">

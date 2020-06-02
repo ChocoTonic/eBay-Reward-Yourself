@@ -21,20 +21,26 @@ header {
     header nav ul {
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      font-size: 1.2rem; }
+      justify-content: center; }
       header nav ul li {
-        list-style: none;
-        margin-right: 0.2rem;
-        padding: 0.5rem 0.7rem; }
-        header nav ul li:hover {
-          background: #191a39;
-          color: #f9f9f7;
-          cursor: pointer;
-          font-weight: bold; }
+        list-style: none; }
+        header nav ul li a {
+          display: block;
+          margin: auto;
+          color: #191a39;
+          text-decoration: none;
+          margin-right: 0.2rem;
+          padding: 0.5rem 0.7rem;
+          font-size: 1.2rem; }
+          header nav ul li a:hover, header nav ul li a.active {
+            background: #191a39;
+            color: #f9f9f7;
+            cursor: pointer;
+            font-weight: bold; }
   header .header-title {
     z-index: 0;
     padding: 0 2rem;
+    width: 95%;
     margin: 0 auto;
     margin-top: -1.5rem;
     display: flex;
