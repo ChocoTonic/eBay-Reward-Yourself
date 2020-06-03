@@ -10,6 +10,11 @@ const ebay = new eBay({
   scope: 'https://api.ebay.com/oauth/api_scope'
 }
 });
+//get oauth token 
+(async()=>{
+  await ebay.getAccessToken();
+})()
+
 
 class Item{
 
@@ -19,21 +24,22 @@ class Item{
 
   static async getRandomItem(){
   try{
-    await ebay.getAccessToken();
+    
     const data = await ebay.getMostWatchedItems({
-      maxResults: 1
+      maxResults: 1,
       })
     
-    const item = data.getMostWatchedItemsResponse.itemRecommendations.item[0]
+    const item = await data.getMostWatchedItemsResponse.itemRecommendations.item[0]
+
     //modifying "item.buyItNowPrice.@currencyId" << illegal object key 
-    // const illegalKey = "@currencyId";
-    // const legalKey = "currency"
-    // const {buyItNowPrice:{__value__: value, [illegalKey]:currency}, ...rest} = item;
-    // const newItem = {
-    //   buyItNowPrice:{[legalKey]: currency, value},
-    //   ...rest
-    // }
-    return item;
+    const illegalKey = "@currencyId";
+    const legalKey = "currency"
+    const {buyItNowPrice:{__value__: value, [illegalKey]:currency}, ...rest} = item;
+    const validItem = {
+      buyItNowPrice:{[legalKey]: currency, value},
+      ...rest
+    }
+    return validItem;
   }catch(err){
     throw err;
   }

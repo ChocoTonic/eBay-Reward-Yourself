@@ -3,7 +3,10 @@ const Item = require("../model/Item")
 exports.index= async (req, res)=>{
   const item = await Item.getRandomItem();
 
-
+  // item = {
+  //   imageUrl: null,
+  //   buyItNowPrice:{price:11, currency:"USD"}
+  // }
   // const spinItem = items[Math.floor(Math.random() * items.length)];
 
 

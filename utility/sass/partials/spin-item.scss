@@ -10,6 +10,11 @@
     justify-content: space-between;
     align-items: center;
     // border:1px white solid;
+    .section-title{
+      h2{
+        margin-bottom:0.5rem;
+      }
+    }
     .item{
       display:flex;
       flex-direction: column;
