@@ -5,7 +5,7 @@
   font-size: 1.2rem;
   border: 2px #f9f9f7 solid;
   display: block;
-  width: 250px; }
+  min-width: 250px; }
   .btn:hover {
     cursor: pointer;
     background: #f9f9f7;
@@ -52,6 +52,16 @@ header {
         width: 100%; }
     header .header-title .title {
       margin-left: 0.2rem; }
+
+footer {
+  background: #191a39;
+  color: #f9f9f7; }
+  footer .top-level-container {
+    padding: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.9rem; }
 
 #intro {
   height: 550px;
@@ -182,15 +192,16 @@ header {
       #spin-item .top-level-container .spin-section-btns .btn {
         margin-right: 0.5rem; }
 
-footer {
-  background: #191a39;
-  color: #f9f9f7; }
-  footer .top-level-container {
-    padding: 4rem 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 0.9rem; }
+#category-section .title {
+  color: black; }
+
+#category-section .item {
+  height: 300px;
+  display: flex;
+  flex-direction: row; }
+  #category-section .item .item-image {
+    border: 1px black solid;
+    width: 30%; }
 
 * {
   margin: 0;

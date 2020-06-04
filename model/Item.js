@@ -17,34 +17,50 @@ const ebay = new eBay({
 
 
 class Item{
-
-  static getProductsByCategory(category){
-
+  constructor(){
+    this.categories = null;
   }
+
+  static async init(){
+    this.categories = await this.getAllCaterogies();
+  }//end init
+
+
+  static async getAllCaterogies(){
+    try{
+      const data = await ebay.getAllCategories(2235);
+      console.log(data);
+      return data;
+    }catch(err){
+      throw err;
+    }
+  }//end getCategories
+
 
   static async getRandomItem(){
-  try{
-    
-    const data = await ebay.getMostWatchedItems({
-      maxResults: 1,
-      })
-    
-    const item = await data.getMostWatchedItemsResponse.itemRecommendations.item[0]
+    try{
+      const data = await ebay.getMostWatchedItems({
+        maxResults: 1,
+        })
+      
+      const item = await data.getMostWatchedItemsResponse.itemRecommendations.item[0]
 
-    //modifying "item.buyItNowPrice.@currencyId" << illegal object key 
-    const illegalKey = "@currencyId";
-    const legalKey = "currency"
-    const {buyItNowPrice:{__value__: value, [illegalKey]:currency}, ...rest} = item;
-    const validItem = {
-      buyItNowPrice:{[legalKey]: currency, value},
-      ...rest
+      //modifying "item.buyItNowPrice.@currencyId" << illegal object key 
+      const illegalKey = "@currencyId";
+      const legalKey = "currency"
+      const {buyItNowPrice:{__value__: value, [illegalKey]:currency}, ...rest} = item;
+      const validItem = {
+        buyItNowPrice:{[legalKey]: currency, value},
+        ...rest
+      }
+      return validItem;
+    }catch(err){
+      throw err;
     }
-    return validItem;
-  }catch(err){
-    throw err;
-  }
 
-  }
+  }//end getRandomItem
 }
+
+Item.init();
 
 module.exports = Item;

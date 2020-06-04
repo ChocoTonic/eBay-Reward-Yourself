@@ -9,6 +9,9 @@ const catalogController = require("../controllers/catalogController");
 //get catalog home page
 router.get("/", catalogController.index);
 
+//get category page
+router.get("/category/:categoryid", catalogController.category_get);
+
 //about page route
 router.get("/about", (req, res)=>{
   res.render("pages/about", {

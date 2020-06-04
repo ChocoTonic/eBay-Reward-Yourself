@@ -1,0 +1,15 @@
+#category-section{
+  .title{
+    color: black;
+  }
+  .item{
+    height: 300px;
+    display:flex;
+    flex-direction:row;
+    .item-image{
+      border:1px black solid;
+      width: 30%;
+    }
+
+  }
+}

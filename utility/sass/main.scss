@@ -1,9 +1,14 @@
+//reusables
 @import "partials/variables";
 @import "partials/btn.scss";
 @import "partials/header.scss";
+@import "partials/footer.scss";
+//index page
 @import "partials/intro.scss", "partials/categories.scss";
 @import "partials/spin-item.scss";
-@import "partials/footer.scss";
+//category page
+@import "partials/category-section.scss";
+
 
 *{
   margin:0;
