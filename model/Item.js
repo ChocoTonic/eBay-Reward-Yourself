@@ -1,7 +1,7 @@
 "use strict"
 const eBay = require("ebay-node-api");
 const dotenv = require("dotenv");
-const fs = require("fs");
+const fsp = require("fs").promises;
 const path = require("path");
 
 dotenv.config();
@@ -14,10 +14,28 @@ const ebay = new eBay({
   scope: 'https://api.ebay.com/oauth/api_scope'
 }
 });
-//get oauth token 
-// (async()=>{
-//   await ebay.getAccessToken();
-// })()
+
+//util functions
+const saveDataToFile =async (filePath, data, msg)=>{
+	try{
+		await fsp.writeFile(filePath, JSON.stringify(data));
+		console.log(msg);
+		return true;
+	}catch(err){
+		throw err;
+	}
+}
+
+const loadJsonFile = async (filePath, msg)=>{
+	try{
+		const response = await fsp.readFile(filePath, {encoding: "utf-8"});
+		const data = await JSON.parse(response);
+		console.log(msg)
+		return data;
+	}catch(err){
+		throw err;
+	}
+}
 
 
 class Item{
@@ -29,25 +47,48 @@ class Item{
     this.getAllCaterogies();
   }//end init
 
+	static async getSavedCategoryVersion(){
 
+	}
   static async getAllCaterogies(){
     try{
+			let categoryTree = null;
+			const versionFilePath = 
+				path.join(__dirname, "..", "data", "root_category_tree","version.json");
+			const categoryTreeFilePath =
+				path.join(__dirname, "..", "data", "root_category_tree","data.json");
+
       await ebay.getAccessToken();
       const {
 				categoryTreeId, 
 				categoryTreeVersion} = await ebay.getDefaultCategoryTreeId("EBAY_US");
 
-			const categoryTree = await ebay.getCategoryTree(categoryTreeId);
+			const {version:savedVersion} = await loadJsonFile(versionFilePath, "version retrieved from local storrage");
 
-			const dataSavedToFile = await this.saveCategoryTreeToFile(categoryTree);
+			//check if there has been any updates 
+			if(savedVersion === categoryTreeVersion){
+				//load categoreTree from localStorage 
+				categoryTree = await loadJsonFile(categoryTreeFilePath, "categoryTree retrieved from local storrage");
+			}else{
+				//request updated data from ebay Api
+				//update locally stored version and categoryTree
+				const versionSavedToFile = await this.saveCategoryVersionToFile(categoryTreeVersion);
+				if(!versionSavedToFile) throw "couldn't save version to file";
 
-			if(!dataSavedToFile) throw "couldn't save data to file";
+				categoryTree = await ebay.getCategoryTree(categoryTreeId);
 
-      // const {rootCategoryNode:{childCategoryTreeNodes}} = await ebay.getCategoryTree(categoryTreeId);
-      // let categoryNames = [];
-      // for(let {category} of childCategoryTreeNodes){
-      //   categoryNames.push(category.categoryName);
-      // }
+				const dataSavedToFile = await this.saveCategoryTreeToFile(categoryTree);
+				if(!dataSavedToFile) throw "couldn't save data to file";
+			}
+			
+			//destruct/get data we want 
+			const {rootCategoryNode:{childCategoryTreeNodes}} = categoryTree;
+			
+      let categoryNames = [];
+      for(let {category} of childCategoryTreeNodes){
+        categoryNames.push(category.categoryName);
+			}
+			
       return data;
     }catch(err){
       throw err;
@@ -55,18 +96,35 @@ class Item{
 	}//end getCategories
 
 	static async saveCategoryTreeToFile(categoryTree){
-		try{
-			const filePath = path.join(__dirname, "..","data","category-tree.json");
-			const dataSavedToFile = await fs.writeFile(filePath, JSON.stringify(categoryTree), (err)=>{
-				if(err) throw err;
-				console.log("data successfully saved to file");
-				
-			})
-			return await dataSavedToFile;
+			
+			const filePath = path.join(__dirname, "..", "data", "root_category_tree","data.json");
 
-		}catch(err){
-			throw err;
-		}
+			const dataSaved = await saveDataToFile(
+				filePath, 
+				categoryTree, 
+				"CategoryTree successfully saved to file")
+				.catch(err=>console.log(err));
+
+			return dataSaved;
+	}
+
+
+	static async saveCategoryVersionToFile(version){
+		//make a version obj
+		const versionObject = {
+			version,
+			lastChecked: Date.now()
+		};
+
+		const filePath = path.join(__dirname, "..", "data", "root_category_tree","version.json");
+
+		const dataSaved = await saveDataToFile(
+			filePath, 
+			versionObject, 
+			"CategoryTree version successfully saved to file")
+			.catch(err=>console.log(err));
+
+		return dataSaved;
 	}
 
 
