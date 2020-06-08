@@ -39,67 +39,27 @@
 				</section>
 				<section id="categories">
 					<div class="top-level-container">
+						<h1 class="centered">CATEGORIS</h1>
 						<div id="categories-wrapper">
-							<div class="category-block">
-								<img 
-									class="image"
-									src="/img/category-shoes.jpg" 
-									alt="shoes category"
-								/>
-								<div class="category-name">
-									<span class="name">SHOES</span>
-								</div>
-							</div>
-							<div class="category-block">
-								<img 
-									class="image"
-									src="/img/category-clothing.jpg" 
-									alt="clothing category"
-								/>
-								<div class="category-name">
-									<span class="name">CLOTHING</span>
-								</div>
-							</div>
-							<div class="category-block">
-								<img 
-									class="image"
-									src="/img/category-tech.jpg" 
-									alt="tech category"
-								/>
-								<div class="category-name">
-									<span class="name">TECH</span>
-								</div>
-							</div>
-							<div class="category-block">
-								<img 
-									class="image"
-									src="/img/category-watches.jpg" 
-									alt="watches category"
-								/>
-								<div class="category-name">
-									<span class="name">WATCHES</span>
-								</div>
-							</div>
-							<div class="category-block">
-								<img 
-									class="image"
-									src="/img/category-skin-care.jpg" 
-									alt="skin care category"
-								/>
-								<div class="category-name">
-									<span class="name">SKIN-CARE</span>
-								</div>
-							</div>
-							<div class="category-block">
-								<img 
-									class="image"
-									src="/img/category-other.jpg" 
-									alt="other category"
-								/>
-								<div class="category-name">
-									<span class="name">OTHER</span>
-								</div>
-							</div>
+							<% if(categories != undefined) {%>
+								<% for(let {id, name} of categories) {%>
+									<div class="category-block">
+										<img 
+											class="image"
+											src="/img/category-shoes.jpg" 
+											alt="shoes category"
+										/>
+										<div class="category-name">
+											<span class="name"><%= name %></span>
+										</div>
+									</div>
+								<%}%>
+							<%} else{%>
+								<h1>ERR 404 : Couldn't fetch categories</h1>
+							<%}%>
+						</div>
+						<div>
+							<button class="btn">SHOW ALL CATEGORIES</button>
 						</div>
 					</div>
 				</section>
@@ -113,12 +73,12 @@
 							<div class="item-body image-container">
 								<img 
 									class="image"
-									src="<%= item.imageURL %>" 
+									src="" 
 									alt="image title here"
 								>
 							</div>
 							<div class="item-footer price centered">
-									<span class="price"><%= item.buyItNowPrice.value %> <%= item.buyItNowPrice.currency %> </span>
+									<span class="price"> </span>
 							</div>
 						</div>	
 						<div class="spin-section-btns">

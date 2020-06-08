@@ -3,6 +3,7 @@ const eBay = require("ebay-node-api");
 const dotenv = require("dotenv");
 const fsp = require("fs").promises;
 const path = require("path");
+const rn = require("random-number");
 
 dotenv.config();
 
@@ -43,14 +44,40 @@ class Item{
     this.categories = null;
   }
 
-  static async init(){
-    this.getAllCaterogies();
+  static async getHomePageCategories(){
+		const categories = await this.getRootCateroryTree();
+
+		//destruct/get data we want 
+		const {rootCategoryNode:{childCategoryTreeNodes}} = categories;
+
+		//construct custom obj
+		const categoriesObj = [];
+		for(let {category:{categoryId, categoryName}} of childCategoryTreeNodes){
+			categoriesObj.push({id: categoryId, name: categoryName});
+		}
+		//randomly select 6 categories to showcase on homepage
+		const selectedCategories = [];
+		const length = categoriesObj.length;
+		const options = {min: 0, max: length-1,integer: true}
+
+		while(selectedCategories.length<6){
+			let index = rn(options);
+			let exists = null;
+
+			//make sure we won't duplicate categories
+			for(let obj in selectedCategories){
+				if(categoriesObj[index].id === obj.id){
+					exists = true;
+				}
+			}
+			if(!exists) selectedCategories.push(categoriesObj[index])
+		}
+
+		return selectedCategories;
   }//end init
 
-	static async getSavedCategoryVersion(){
 
-	}
-  static async getAllCaterogies(){
+  static async getRootCateroryTree(){
     try{
 			let categoryTree = null;
 			const versionFilePath = 
@@ -81,15 +108,8 @@ class Item{
 				if(!dataSavedToFile) throw "couldn't save data to file";
 			}
 			
-			//destruct/get data we want 
-			const {rootCategoryNode:{childCategoryTreeNodes}} = categoryTree;
 			
-      let categoryNames = [];
-      for(let {category} of childCategoryTreeNodes){
-        categoryNames.push(category.categoryName);
-			}
-			
-      return data;
+      return categoryTree;
     }catch(err){
       throw err;
     }
@@ -153,6 +173,6 @@ class Item{
   //}//end getRandomItem
 }
 
-Item.init();
+
 
 module.exports = Item;

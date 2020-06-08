@@ -13,7 +13,8 @@
 	transition: $prop $duration $function;
 }
 #categories{
-  height: $section-height + 50;
+  min-height: $section-height;
+  
   .top-level-container{
     padding: 3rem 0;
     height:100%;
@@ -57,9 +58,11 @@
           // border:1px $white-color solid;
           background: $white-color;
           opacity:0.8;
-          padding: 0.5rem 3rem; 
+          padding: 0.7rem 1rem; 
           font-weight: bold;
           font-size: 1.2rem;
+          min-width:150px;
+          text-align:center;
         }
         &:nth-child(2), &:nth-child(5){
           .category-name{

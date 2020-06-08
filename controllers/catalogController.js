@@ -1,10 +1,10 @@
 const Item = require("../model/Item")
 
 exports.index= async (req, res)=>{
-  const item = await Item.getRandomItem();
+  const categories = await Item.getHomePageCategories();
 
   res.render("pages/index", {
-    item,
+    categories,
     path: "/catalog"
   });
 }

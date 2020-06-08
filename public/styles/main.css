@@ -101,7 +101,7 @@ footer {
         height: 100%; }
 
 #categories {
-  height: 600px; }
+  min-height: 550px; }
   #categories .top-level-container {
     padding: 3rem 0;
     height: 100%; }
@@ -146,9 +146,11 @@ footer {
           z-index: 2;
           background: #f9f9f7;
           opacity: 0.8;
-          padding: 0.5rem 3rem;
+          padding: 0.7rem 1rem;
           font-weight: bold;
-          font-size: 1.2rem; }
+          font-size: 1.2rem;
+          min-width: 150px;
+          text-align: center; }
         #categories .top-level-container #categories-wrapper .category-block:nth-child(2) .category-name, #categories .top-level-container #categories-wrapper .category-block:nth-child(5) .category-name {
           background: black;
           color: white; }
