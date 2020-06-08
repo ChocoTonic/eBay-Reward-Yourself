@@ -1,5 +1,9 @@
+"use strict"
 const eBay = require("ebay-node-api");
 const dotenv = require("dotenv");
+const fs = require("fs");
+const path = require("path");
+
 dotenv.config();
 
 const ebay = new eBay({
@@ -11,9 +15,9 @@ const ebay = new eBay({
 }
 });
 //get oauth token 
-(async()=>{
-  await ebay.getAccessToken();
-})()
+// (async()=>{
+//   await ebay.getAccessToken();
+// })()
 
 
 class Item{
@@ -22,43 +26,73 @@ class Item{
   }
 
   static async init(){
-    this.categories = await this.getAllCaterogies();
+    this.getAllCaterogies();
   }//end init
 
 
   static async getAllCaterogies(){
     try{
-      const data = await ebay.getAllCategories(2235);
-      console.log(data);
+      await ebay.getAccessToken();
+      const {
+				categoryTreeId, 
+				categoryTreeVersion} = await ebay.getDefaultCategoryTreeId("EBAY_US");
+
+			const categoryTree = await ebay.getCategoryTree(categoryTreeId);
+
+			const dataSavedToFile = await this.saveCategoryTreeToFile(categoryTree);
+
+			if(!dataSavedToFile) throw "couldn't save data to file";
+
+      // const {rootCategoryNode:{childCategoryTreeNodes}} = await ebay.getCategoryTree(categoryTreeId);
+      // let categoryNames = [];
+      // for(let {category} of childCategoryTreeNodes){
+      //   categoryNames.push(category.categoryName);
+      // }
       return data;
     }catch(err){
       throw err;
     }
-  }//end getCategories
+	}//end getCategories
+
+	static async saveCategoryTreeToFile(categoryTree){
+		try{
+			const filePath = path.join(__dirname, "..","data","category-tree.json");
+			const dataSavedToFile = await fs.writeFile(filePath, JSON.stringify(categoryTree), (err)=>{
+				if(err) throw err;
+				console.log("data successfully saved to file");
+				
+			})
+			return await dataSavedToFile;
+
+		}catch(err){
+			throw err;
+		}
+	}
 
 
-  static async getRandomItem(){
-    try{
-      const data = await ebay.getMostWatchedItems({
-        maxResults: 1,
-        })
+  // static async getRandomItem(){
+  //   try{
+  //     await ebay.getAccessToken();
+  //     const data = await ebay.getMostWatchedItems({
+  //       maxResults: 1,
+  //       })
       
-      const item = await data.getMostWatchedItemsResponse.itemRecommendations.item[0]
+  //     const item = await data.getMostWatchedItemsResponse.itemRecommendations.item[0]
 
-      //modifying "item.buyItNowPrice.@currencyId" << illegal object key 
-      const illegalKey = "@currencyId";
-      const legalKey = "currency"
-      const {buyItNowPrice:{__value__: value, [illegalKey]:currency}, ...rest} = item;
-      const validItem = {
-        buyItNowPrice:{[legalKey]: currency, value},
-        ...rest
-      }
-      return validItem;
-    }catch(err){
-      throw err;
-    }
+  //     //modifying "item.buyItNowPrice.@currencyId" << illegal object key 
+  //     const illegalKey = "@currencyId";
+  //     const legalKey = "currency"
+  //     const {buyItNowPrice:{__value__: value, [illegalKey]:currency}, ...rest} = item;
+  //     const validItem = {
+  //       buyItNowPrice:{[legalKey]: currency, value},
+  //       ...rest
+  //     }
+  //     return validItem;
+  //   }catch(err){
+  //     throw err;
+  //   }
 
-  }//end getRandomItem
+  //}//end getRandomItem
 }
 
 Item.init();
