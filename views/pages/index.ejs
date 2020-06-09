@@ -42,11 +42,11 @@
 						<div id="categories-wrapper">
 							<% if(categories != undefined) {%>
 								<% for(let {id, name} of categories) {%>
-									<div class="category-block">
+									<a class="category-block" href="/catalog/category/<%= id %>">
 										<div class="category-name">
 											<span class="name"><%= name %></span>
 										</div>
-									</div>
+									</a>
 								<%}%>
 							<%} else{%>
 								<h1>ERR 404 : Couldn't fetch categories</h1>

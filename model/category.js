@@ -116,6 +116,7 @@ class Category{
 				if(!versionSavedToFile) throw "couldn't save version to file";
 
 				categoryTree = await ebay.getCategoryTree(categoryTreeId);
+				if(categoryTree) console.log("rootCategoryTree pulled from ebay");
 
 				const dataSavedToFile = await this.saveCategoryTreeToFile(categoryTree);
 				if(!dataSavedToFile) throw "couldn't save data to file";
