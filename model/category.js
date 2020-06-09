@@ -4,9 +4,8 @@ const dotenv = require("dotenv");
 const fsp = require("fs").promises;
 const path = require("path");
 const rn = require("random-number");
-
+const Scraper = require("images-scraper");
 dotenv.config();
-
 const ebay = new eBay({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
@@ -16,7 +15,8 @@ const ebay = new eBay({
 }
 });
 
-//util functions
+//util functions--------------------------------------------
+
 const saveDataToFile =async (filePath, data, msg)=>{
 	try{
 		await fsp.writeFile(filePath, JSON.stringify(data));
@@ -38,11 +38,33 @@ const loadJsonFile = async (filePath, msg)=>{
 	}
 }
 
-
-class Item{
+//Module---------------------------------------------------
+class Category{
   constructor(){
     this.categories = null;
   }
+
+	static async scrapeCategoryImage(categoryName){
+
+		try{
+			const google = new Scraper({
+				puppeteer: {
+					headless: true,
+				},
+				tbs:{
+					isz: "m",
+					itp:  "photo",
+					sur: "fmc"
+				}
+			});
+
+			const results = await google.scrape(categoryName, 1);
+			console.log('results', results);
+			return results[0].url;
+		}catch(err){
+			throw err;
+		}
+	}
 
   static async getHomePageCategories(){
 		const categories = await this.getRootCateroryTree();
@@ -70,11 +92,12 @@ class Item{
 					exists = true;
 				}
 			}
-			if(!exists) selectedCategories.push(categoriesObj[index])
+			if(!exists) selectedCategories.push(categoriesObj[index]);
+			
 		}
 
 		return selectedCategories;
-  }//end init
+  }//end getHomePageCategories
 
 
   static async getRootCateroryTree(){
@@ -113,7 +136,8 @@ class Item{
     }catch(err){
       throw err;
     }
-	}//end getCategories
+	}//end getRootCateroryTree
+
 
 	static async saveCategoryTreeToFile(categoryTree){
 			
@@ -126,7 +150,7 @@ class Item{
 				.catch(err=>console.log(err));
 
 			return dataSaved;
-	}
+	}//end saveCategoryTreeToFile
 
 
 	static async saveCategoryVersionToFile(version){
@@ -145,34 +169,9 @@ class Item{
 			.catch(err=>console.log(err));
 
 		return dataSaved;
-	}
+	}//end saveCategoryVersionToFile
 
-
-  // static async getRandomItem(){
-  //   try{
-  //     await ebay.getAccessToken();
-  //     const data = await ebay.getMostWatchedItems({
-  //       maxResults: 1,
-  //       })
-      
-  //     const item = await data.getMostWatchedItemsResponse.itemRecommendations.item[0]
-
-  //     //modifying "item.buyItNowPrice.@currencyId" << illegal object key 
-  //     const illegalKey = "@currencyId";
-  //     const legalKey = "currency"
-  //     const {buyItNowPrice:{__value__: value, [illegalKey]:currency}, ...rest} = item;
-  //     const validItem = {
-  //       buyItNowPrice:{[legalKey]: currency, value},
-  //       ...rest
-  //     }
-  //     return validItem;
-  //   }catch(err){
-  //     throw err;
-  //   }
-
-  //}//end getRandomItem
 }
 
 
-
-module.exports = Item;
+module.exports = Category;
