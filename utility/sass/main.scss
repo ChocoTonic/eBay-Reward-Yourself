@@ -4,8 +4,9 @@
 @import "partials/header.scss";
 @import "partials/footer.scss";
 //index page
-@import "partials/intro.scss", "partials/categories.scss";
-@import "partials/spin-item.scss";
+@import "partials/index/intro.scss";
+@import "partials/index/categories.scss";
+@import "partials/index/best-deal.scss";
 //category page
 @import "partials/category-section.scss";
 
@@ -27,4 +28,8 @@ html, body{
 }
 .centered{
   text-align:center;
+}
+a{
+  text-decoration: none;
+  display: inline-block;
 }

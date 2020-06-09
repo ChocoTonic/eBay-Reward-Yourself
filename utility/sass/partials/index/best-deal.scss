@@ -1,4 +1,4 @@
-#spin-item{
+#best-deal{
   height: $section-height;
   color: $white-color;
   background: $gray-color;
@@ -52,6 +52,10 @@
       flex-direction:row;
       .btn{
         margin-right:0.5rem;
+        @include transition(all, 200ms, ease-out);
+          &:hover{
+            background: $gray-color;
+          }
       }
     }
   }

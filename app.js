@@ -1,7 +1,7 @@
 "use strict";
 const path = require("path");
+const http = require("http");
 const express = require("express");
-
 const indexRouter = require("./routes/index");
 const catalogRouter = require("./routes/catalog");
 const errorRouter = require("./routes/error");
@@ -15,12 +15,11 @@ const PORT = 8080;
   await sassCompiler();
 })()
 
+
 //set the view engine to ejs
 app.set("view engine", "ejs");
 //static assets root
 app.use(express.static(path.join(__dirname, "public")));
-
-
 
 
 //handle client requests
@@ -29,6 +28,8 @@ app.use("/catalog", catalogRouter);
 app.use(errorRouter);
 
 
-app.listen(PORT, ()=>{
+app.listen(PORT,()=>{
   console.log(`server started: port ${PORT}`);
 });
+
+// app.listen(PORT, "127.0.0.1")

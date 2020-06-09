@@ -1,3 +1,10 @@
+@mixin btn-hover(){
+  background: $white-color;
+  color: $light-violet-color;
+  border-color: $light-violet-color;
+  font-weight: bold;
+}
+
 .btn{
   background: $light-violet-color;
   color: $white-color;
@@ -6,11 +13,14 @@
   border:2px $white-color solid;
   display: block;
   min-width: 250px;
+  display: inline-block;
+  text-align: center;
   &:hover{
     cursor:pointer;
-    background: $white-color;
-    color: $light-violet-color;
-    border-color: $light-violet-color;
-    font-weight: bold;
   }
+}
+
+.black-btn{
+  background: black;
+  color: white;
 }

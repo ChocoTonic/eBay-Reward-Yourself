@@ -1,10 +1,17 @@
-const Category = require("../model/category")
+const Category = require("../model/category");
+const Item = require("../model/item");
+
+
 
 exports.index= async (req, res)=>{
-  const categories = await Category.getHomePageCategories();
+  const categories = await Category.getHomePageCategories(8);
+
+  //arbitrarily select one category from which to show recommended Item
+  const bestCurrentDeal = await Item.getRecommendedItem(categories, 0);
 
   res.render("pages/index", {
     categories,
+    bestCurrentDeal,
     path: "/catalog"
   });
 }

@@ -1,5 +1,25 @@
+@mixin transform($operation){
+  -webkit-transform: $operation;
+	-moz-transform: $operation;
+	-ms-transform: $operation;
+	-o-transform: $operation;
+	transform: $operation;
+}
+@mixin transition($prop, $duration, $function){
+  -webkit-transition: $prop $duration $function;
+	-moz-transition: $prop $duration $function;
+	-ms-transition: $prop $duration $function;
+	-o-transition: $prop $duration $function;
+	transition: $prop $duration $function;
+}
+
 $white-color: #f9f9f7;
 $dark-violet-color: #191a39;
 $gray-color: #3f3f47;
 $light-violet-color: #777990; 
 $section-height: 550px;
+$red-color : #ea163f;
+$blue-color: #528dde;
+$yellow-color: #f69f2a;
+$green-color: #75cb08;
+

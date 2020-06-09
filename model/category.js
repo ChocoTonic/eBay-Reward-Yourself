@@ -1,19 +1,13 @@
 "use strict"
-const eBay = require("ebay-node-api");
-const dotenv = require("dotenv");
 const fsp = require("fs").promises;
 const path = require("path");
 const rn = require("random-number");
 const Scraper = require("images-scraper");
-dotenv.config();
-const ebay = new eBay({
-  clientID: process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET,
-  body: {
-  grant_type: 'client_credentials',
-  scope: 'https://api.ebay.com/oauth/api_scope'
-}
-});
+const ebay = require("./ebay");
+
+(async ()=>{
+	await ebay.getAccessToken();
+})()
 
 //util functions--------------------------------------------
 
@@ -40,33 +34,31 @@ const loadJsonFile = async (filePath, msg)=>{
 
 //Module---------------------------------------------------
 class Category{
-  constructor(){
-    this.categories = null;
-  }
 
-	static async scrapeCategoryImage(categoryName){
 
-		try{
-			const google = new Scraper({
-				puppeteer: {
-					headless: true,
-				},
-				tbs:{
-					isz: "m",
-					itp:  "photo",
-					sur: "fmc"
-				}
-			});
+	// static async scrapeCategoryImage(categoryName){
 
-			const results = await google.scrape(categoryName, 1);
-			console.log('results', results);
-			return results[0].url;
-		}catch(err){
-			throw err;
-		}
-	}
+	// 	try{
+	// 		const google = new Scraper({
+	// 			puppeteer: {
+	// 				headless: true,
+	// 			},
+	// 			tbs:{
+	// 				isz: "m",
+	// 				itp:  "photo",
+	// 				sur: "fmc"
+	// 			}
+	// 		});
 
-  static async getHomePageCategories(){
+	// 		const results = await google.scrape(categoryName, 1);
+	// 		console.log('results', results);
+	// 		return results[0].url;
+	// 	}catch(err){
+	// 		throw err;
+	// 	}
+	// }
+
+  static async getHomePageCategories(count){
 		const categories = await this.getRootCateroryTree();
 
 		//destruct/get data we want 
@@ -77,23 +69,22 @@ class Category{
 		for(let {category:{categoryId, categoryName}} of childCategoryTreeNodes){
 			categoriesObj.push({id: categoryId, name: categoryName});
 		}
-		//randomly select 6 categories to showcase on homepage
+		//randomly select $count categories to showcase on homepage
 		const selectedCategories = [];
 		const length = categoriesObj.length;
 		const options = {min: 0, max: length-1,integer: true}
 
-		while(selectedCategories.length<6){
+		while(selectedCategories.length < count){
 			let index = rn(options);
 			let exists = null;
 
 			//make sure we won't duplicate categories
-			for(let obj in selectedCategories){
+			for(let obj of selectedCategories){
 				if(categoriesObj[index].id === obj.id){
 					exists = true;
 				}
 			}
 			if(!exists) selectedCategories.push(categoriesObj[index]);
-			
 		}
 
 		return selectedCategories;
@@ -108,7 +99,6 @@ class Category{
 			const categoryTreeFilePath =
 				path.join(__dirname, "..", "data", "root_category_tree","data.json");
 
-      await ebay.getAccessToken();
       const {
 				categoryTreeId, 
 				categoryTreeVersion} = await ebay.getDefaultCategoryTreeId("EBAY_US");

@@ -11,8 +11,7 @@
 						<div class="intro-left-side">
 							<div class="text">
 								<h2>BECAUSE YOU'VE BEEN WORKING TOO</h2>
-								<h2>HARD...</h2>
-								<h1>FOR 10$ ONLY</h1>					
+								<h2>HARD...</h2>					
 								<h2>OFFER YOURSELF AN AMAZING GIFT</h2>
 							</div>
 							<div class="marketing-pitch">
@@ -24,8 +23,8 @@
 								</ul>
 							</div>
 							<div class="intro-btns">
-								<button class="btn">RANDOM GIFT</button>
-								<button class="btn">CATEGORIES</button>
+								<a class="btn" href="#best-deal">TEST MY LUCK</a>
+								<a class="btn">CATEGORIES</a>
 							</div>
 						</div>
 						<div class="intro-right-side">
@@ -39,16 +38,11 @@
 				</section>
 				<section id="categories">
 					<div class="top-level-container">
-						<h1 class="centered">CATEGORIS</h1>
+						<!-- <h3 class=" title">CATEGORIS</h1> -->
 						<div id="categories-wrapper">
 							<% if(categories != undefined) {%>
 								<% for(let {id, name} of categories) {%>
 									<div class="category-block">
-										<img 
-											class="image"
-											src="/img/category-shoes.jpg" 
-											alt="shoes category"
-										/>
 										<div class="category-name">
 											<span class="name"><%= name %></span>
 										</div>
@@ -59,30 +53,29 @@
 							<%}%>
 						</div>
 						<div>
-							<button class="btn">SHOW ALL CATEGORIES</button>
+							<a class="btn black-btn">BROWSE ALL CATEGORIES</a>
 						</div>
 					</div>
 				</section>
-				<section id="spin-item">
+				<section id="best-deal">
 					<div class="top-level-container">
 						<div class="section-title">
-							<h2 class="centered title">GOT MORE MONEY ?</h2>
-							<h2 class="centered title">HERE IS THE BEST CURRENT OFFER</h2>
+							<h1 class="centered title">BEST CURRENT DEAL</h1>
 						</div>
 						<div class="item">
 							<div class="item-body image-container">
 								<img 
 									class="image"
-									src="" 
+									src="<%= bestCurrentDeal.pictureURLLarge[0] %>" 
 									alt="image title here"
 								>
 							</div>
 							<div class="item-footer price centered">
-									<span class="price"> </span>
+									<span class="price"><%= bestCurrentDeal.sellingStatus[0].currentPrice[0].__value__ %> $</span>
 							</div>
 						</div>	
 						<div class="spin-section-btns">
-							<button class="btn">ORDER ON EBAY</button>
+							<a class="btn">VIEW DETAILS</a>
 						</div>
 					</div>
 				</section>
