@@ -3,12 +3,16 @@
     color: black;
   }
   .item{
-    height: 300px;
+    height: 200px;
     display:flex;
     flex-direction:row;
     .item-image{
-      border:1px black solid;
-      width: 30%;
+      // border:1px black solid;
+      width: 15%;
+      img{
+        width:100%;
+        
+      }
     }
 
   }

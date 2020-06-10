@@ -18,9 +18,12 @@ exports.index= async (req, res)=>{
 
 exports.category_get = async(req,res)=>{
   const categoryId = req.params.categoryid;
-  console.log(categoryId);
+
+  const items = await Item.getCategoryItems(categoryId, 12);
+  
   res.render("pages/category", {
-    path: null
+    path: null,
+    items
   })
 }
 

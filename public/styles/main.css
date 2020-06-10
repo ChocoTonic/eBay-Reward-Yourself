@@ -216,12 +216,13 @@ footer {
   color: black; }
 
 #category-section .item {
-  height: 300px;
+  height: 200px;
   display: flex;
   flex-direction: row; }
   #category-section .item .item-image {
-    border: 1px black solid;
-    width: 30%; }
+    width: 15%; }
+    #category-section .item .item-image img {
+      width: 100%; }
 
 * {
   margin: 0;
