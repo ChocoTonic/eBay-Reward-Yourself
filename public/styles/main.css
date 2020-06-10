@@ -122,6 +122,10 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center; }
+    #categories .top-level-container .section-title {
+      margin-bottom: 2rem; }
+      #categories .top-level-container .section-title .title {
+        font-size: 3rem; }
     #categories .top-level-container #categories-wrapper {
       margin: 0 auto;
       margin-bottom: 2rem;
@@ -166,60 +170,87 @@ footer {
           min-width: 150px;
           text-align: center; }
 
-#best-deal {
-  height: 550px;
+#search-item {
+  min-height: 550px;
   color: #f9f9f7;
   background: #3f3f47; }
-  #best-deal .top-level-container {
+  #search-item .top-level-container {
     height: 100%;
     padding: 2rem 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center; }
-    #best-deal .top-level-container .section-title h2 {
-      margin-bottom: 0.5rem; }
-    #best-deal .top-level-container .item {
-      display: flex;
-      flex-direction: column;
-      height: 330px;
-      width: 250px; }
-      #best-deal .top-level-container .item .image-container {
-        height: 90%; }
-        #best-deal .top-level-container .item .image-container .image {
-          height: 100%;
-          width: 100%; }
-      #best-deal .top-level-container .item .item-footer {
-        position: relative;
-        height: 10%;
-        font-size: 1.6rem;
-        font-weight: bold; }
-        #best-deal .top-level-container .item .item-footer .price {
-          width: 100%;
+    #search-item .top-level-container .section-title {
+      margin-bottom: 2rem; }
+      #search-item .top-level-container .section-title .title {
+        font-size: 3rem; }
+    #search-item .top-level-container #images-wrapper {
+      margin: 0 auto;
+      width: 80%;
+      gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(3, 33%); }
+      #search-item .top-level-container #images-wrapper .block-wrapper {
+        position: relative; }
+        #search-item .top-level-container #images-wrapper .block-wrapper .image-block {
+          position: relative;
+          padding-top: 100%;
+          overflow: hidden; }
+          #search-item .top-level-container #images-wrapper .block-wrapper .image-block:hover > .image {
+            -webkit-transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            -ms-transform: scale(1.1);
+            -o-transform: scale(1.1);
+            transform: scale(1.1);
+            filter: blur(2px); }
+          #search-item .top-level-container #images-wrapper .block-wrapper .image-block .image {
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            -webkit-transition: all 800ms ease-out;
+            -moz-transition: all 800ms ease-out;
+            -ms-transition: all 800ms ease-out;
+            -o-transition: all 800ms ease-out;
+            transition: all 800ms ease-out; }
+        #search-item .top-level-container #images-wrapper .block-wrapper .image-name {
           position: absolute;
-          bottom: 0;
-          left: 0; }
-    #best-deal .top-level-container .spin-section-btns {
+          width: 100%;
+          bottom: 2rem;
+          left: 0;
+          z-index: 2;
+          background: black;
+          color: white;
+          opacity: 0.8;
+          padding: 0.5rem 3rem;
+          font-weight: bold;
+          font-size: 1.2rem;
+          text-align: center; }
+    #search-item .top-level-container .section-btns {
       display: flex;
       flex-direction: row; }
-      #best-deal .top-level-container .spin-section-btns .btn {
+      #search-item .top-level-container .section-btns .btn {
         margin-right: 0.5rem;
         -webkit-transition: all 200ms ease-out;
         -moz-transition: all 200ms ease-out;
         -ms-transition: all 200ms ease-out;
         -o-transition: all 200ms ease-out;
         transition: all 200ms ease-out; }
-        #best-deal .top-level-container .spin-section-btns .btn:hover {
+        #search-item .top-level-container .section-btns .btn:hover {
           background: #3f3f47; }
 
 #category-section .title {
   color: black; }
 
 #category-section .item {
+  margin-bottom: 1rem;
   height: 200px;
   display: flex;
   flex-direction: row; }
   #category-section .item .item-image {
+    border: 1px #777990 solid;
     width: 15%; }
     #category-section .item .item-image img {
       width: 100%; }
@@ -235,7 +266,8 @@ html, body {
 
 .top-level-container {
   width: 80%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  max-width: 1400px; }
 
 .centered {
   text-align: center; }

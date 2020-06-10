@@ -10,11 +10,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app",
-    "dev": "nodemon app"
+    "dev": "nodemon app",
+    "lint": "eslint ./"
   },
   "author": "moosylla",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.21.2",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
@@ -22,7 +26,6 @@
     "ebay-node-api": "^2.8.7",
     "ejs": "^3.1.3",
     "express": "^4.17.1",
-    "images-scraper": "^5.0.7",
     "node-sass": "^4.14.1",
     "random-number": "0.0.9"
   }

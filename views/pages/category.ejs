@@ -16,7 +16,7 @@
               <div class="item">
                 <div class="item-image">
                   <img 
-                    src="<% if(item.hasOwnProperty('pictureURLLarge')) {%><%= item.pictureURLLarge[0] %><%}else {%><%= item.galleryURL[0] %><%}%>" 
+                    src="<% if (Object.prototype.hasOwnProperty.call(item, 'pictureURLLarge')) {%><%= item.pictureURLLarge[0] %><%}else if(Object.prototype.hasOwnProperty.call(item, 'galleryURL')){%><%= item.galleryURL[0] %><%}%>" 
                     alt="img here"
                   >
                 </div>

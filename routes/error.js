@@ -1,9 +1,9 @@
-const express = require("express");
+const express = require('express');
+const errorController = require('../controllers/errorController');
+
 const router = express.Router();
 
-const errorController = require("../controllers/errorController");
-
-router.get("*", errorController.notFoundPage);
+router.get('*', errorController.notFoundPage);
 
 
 module.exports = router;

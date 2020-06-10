@@ -4,11 +4,11 @@
 @import "partials/header.scss";
 @import "partials/footer.scss";
 //index page
-@import "partials/index/intro.scss";
-@import "partials/index/categories.scss";
-@import "partials/index/best-deal.scss";
+@import "partials/index-page/intro.scss";
+@import "partials/index-page/categories.scss";
+@import "partials/index-page/search-item.scss";
 //category page
-@import "partials/category/category-section.scss";
+@import "partials/category-page/category-section.scss";
 
 
 *{
@@ -25,6 +25,7 @@ html, body{
 .top-level-container{
   width: 80%;
   margin:0 auto;
+  max-width:1400px;
 }
 .centered{
   text-align:center;

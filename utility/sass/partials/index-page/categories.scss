@@ -9,6 +9,13 @@
     display:flex;
     flex-direction: column;
     align-items: center;
+
+    .section-title{
+      margin-bottom:2rem;
+      .title{
+        font-size:3rem;
+      }
+    }
     
     #categories-wrapper{
       margin:0 auto;
