@@ -7,7 +7,11 @@ const errorRouter = require('./routes/error');
 const sassCompiler = require('./utility/sass/sass-compiler');
 
 const app = express();
-const PORT = 8080;
+
+let port = process.env.PORT;
+if (port == null || port === '') {
+  port = 8000;
+}
 
 // compile sass files
 (async () => {
@@ -24,4 +28,4 @@ app.use('/', indexRouter);
 app.use('/catalog', catalogRouter);
 app.use(errorRouter);
 
-app.listen(PORT);
+app.listen(port);
