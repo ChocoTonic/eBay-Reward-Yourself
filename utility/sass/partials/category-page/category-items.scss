@@ -50,6 +50,31 @@
         }
       }
     }
+    #pagination {
+      padding: 3rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      background: $light-violet-color;
+
+      a {
+        display: inline-block;
+        color: black;
+        padding: 8px 16px;
+        background: $white-color;
+        margin-right: 0.5rem;
+        border-radius: 0.1rem;
+        @include transition(all, 200ms, ease-out);
+        &:hover {
+          background: $gray-color;
+          color: $white-color;
+        }
+        &.active {
+          background: $green-color;
+          color: $white-color;
+        }
+      }
+    }
   }
   #error-block {
     height: $section-height;

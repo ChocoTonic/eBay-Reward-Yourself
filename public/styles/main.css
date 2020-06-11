@@ -290,6 +290,30 @@ footer {
             background: #f9f9f7;
             border: 1px #75cb08 solid;
             color: #528dde; }
+    #category-items .items-wrapper #pagination {
+      padding: 3rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      background: #777990; }
+      #category-items .items-wrapper #pagination a {
+        display: inline-block;
+        color: black;
+        padding: 8px 16px;
+        background: #f9f9f7;
+        margin-right: 0.5rem;
+        border-radius: 0.1rem;
+        -webkit-transition: all 200ms ease-out;
+        -moz-transition: all 200ms ease-out;
+        -ms-transition: all 200ms ease-out;
+        -o-transition: all 200ms ease-out;
+        transition: all 200ms ease-out; }
+        #category-items .items-wrapper #pagination a:hover {
+          background: #3f3f47;
+          color: #f9f9f7; }
+        #category-items .items-wrapper #pagination a.active {
+          background: #75cb08;
+          color: #f9f9f7; }
   #category-items #error-block {
     height: 550px;
     padding: 4rem 0; }

@@ -32,14 +32,14 @@
                   <a
                     class="btn green-btn"
                     target="_"
-                    href="<%= items[0].viewItemURL[0] %>"
+                    href="<%= item.viewItemURL[0] %>"
                     >ORDER ON EBAY</a
                   >
                 </div>
               </div>
             </div>
             <%}%>
-            <div id="category-pagination">
+            <div id="pagination">
               <%if (paginationData.first) {%>
               <a
                 href="/catalog/category/<%= categoryId %>?page=<%= paginationData.first %>"
@@ -50,17 +50,20 @@
               <a
                 href="/catalog/category/<%= categoryId %>?page=<%= paginationData.previous %>"
               >
-                Previous
+                &lt;&lt;
               </a>
               <% } %> <% paginationData.range.forEach((page)=>{ %>
-              <a href="/catalog/category/<%= categoryId %>?page=<%= page %>">
+              <a
+                href="/catalog/category/<%= categoryId %>?page=<%= page %>"
+                class="<% if(paginationData.current === page) {%>active<%}%>"
+              >
                 <%= page %>
               </a>
               <% }) %> <%if (paginationData.next) {%>
               <a
                 href="/catalog/category/<%= categoryId %>?page=<%= paginationData.next %>"
               >
-                Next
+                &gt;&gt;
               </a>
               <% } %> <%if (paginationData.last) {%>
               <a
