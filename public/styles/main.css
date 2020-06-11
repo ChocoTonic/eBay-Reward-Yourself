@@ -255,6 +255,13 @@ footer {
     #category-section .item .item-image img {
       width: 100%; }
 
+#category-section #error-block {
+  height: 550px;
+  padding: 4rem 0; }
+  #category-section #error-block .err-message {
+    color: red;
+    text-align: center; }
+
 * {
   margin: 0;
   padding: 0;

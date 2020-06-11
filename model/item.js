@@ -23,16 +23,20 @@ class Item {
   }
 
   static async getCategoryItems(categoryId, entriesPerPage) {
-    const [data] = await ebay.findItemsAdvanced({
-      categoryId,
-      entriesPerPage,
-      filter: 'HideDuplicateItems:true',
-    });
+    try {
+      const [data] = await ebay.findItemsAdvanced({
+        categoryId,
+        entriesPerPage,
+        filter: 'HideDuplicateItems:true',
+      });
 
-    const { searchResult } = data;
-    const { item: items } = searchResult[0];
+      const { searchResult } = data;
+      const { item: items } = searchResult[0];
 
-    return items;
+      return items;
+    } catch (err) {
+      return null;
+    }
   }
 }
 

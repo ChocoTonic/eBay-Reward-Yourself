@@ -25,6 +25,7 @@ class Category {
   static async getHomePageCategories(count) {
     const categories = await this.getRootCateroryTree();
 
+    if (!categories) return null;
     // destruct/get data we want
     const {
       rootCategoryNode: { childCategoryTreeNodes },
@@ -59,54 +60,59 @@ class Category {
   } // end getHomePageCategories
 
   static async getRootCateroryTree() {
-    let categoryTree = null;
-    const versionFilePath = path.join(
-      __dirname,
-      '..',
-      'data',
-      'root_category_tree',
-      'version.json',
-    );
-    const categoryTreeFilePath = path.join(
-      __dirname,
-      '..',
-      'data',
-      'root_category_tree',
-      'data.json',
-    );
-
-    const {
-      categoryTreeId,
-      categoryTreeVersion,
-    } = await ebay.getDefaultCategoryTreeId('EBAY_US');
-
-    const { version: savedVersion } = await loadJsonFile(
-      versionFilePath,
-      'version retrieved from local storrage',
-    );
-
-    // check if there has been any updates
-    if (savedVersion === categoryTreeVersion) {
-      // load categoreTree from localStorage
-      categoryTree = await loadJsonFile(
-        categoryTreeFilePath,
-        'categoryTree retrieved from local storrage',
+    try {
+      let categoryTree = null;
+      const versionFilePath = path.join(
+        __dirname,
+        '..',
+        'data',
+        'root_category_tree',
+        'version.json',
       );
-    } else {
-      // request updated data from ebay Api
-      // update locally stored version and categoryTree
-      const versionSavedToFile = await this.saveCategoryVersionToFile(
+      const categoryTreeFilePath = path.join(
+        __dirname,
+        '..',
+        'data',
+        'root_category_tree',
+        'data.json',
+      );
+
+      const {
+        categoryTreeId,
         categoryTreeVersion,
+      } = await ebay.getDefaultCategoryTreeId('EBAY_US');
+
+      const { version: savedVersion } = await loadJsonFile(
+        versionFilePath,
+        'version retrieved from local storrage',
       );
-      if (!versionSavedToFile) throw new Error("couldn't save version to file");
 
-      categoryTree = await ebay.getCategoryTree(categoryTreeId);
+      // check if there has been any updates
+      if (savedVersion === categoryTreeVersion) {
+        // load categoreTree from localStorage
+        categoryTree = await loadJsonFile(
+          categoryTreeFilePath,
+          'categoryTree retrieved from local storrage',
+        );
+      } else {
+        // request updated data from ebay Api
+        // update locally stored version and categoryTree
+        const versionSavedToFile = await this.saveCategoryVersionToFile(
+          categoryTreeVersion,
+        );
+        if (!versionSavedToFile)
+          throw new Error("couldn't save version to file");
 
-      const dataSavedToFile = await this.saveCategoryTreeToFile(categoryTree);
-      if (!dataSavedToFile) throw new Error("couldn't save data to file");
+        categoryTree = await ebay.getCategoryTree(categoryTreeId);
+
+        const dataSavedToFile = await this.saveCategoryTreeToFile(categoryTree);
+        if (!dataSavedToFile) throw new Error("couldn't save data to file");
+      }
+
+      return categoryTree;
+    } catch (err) {
+      return null;
     }
-
-    return categoryTree;
   } // end getRootCateroryTree
 
   static async saveCategoryTreeToFile(categoryTree) {

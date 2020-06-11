@@ -1,20 +1,26 @@
-#category-section{
-  .title{
+#category-section {
+  .title {
     color: black;
   }
-  .item{
+  .item {
     margin-bottom: 1rem;
     height: 200px;
-    display:flex;
-    flex-direction:row;
-    .item-image{
-      border:1px $light-violet-color solid;
+    display: flex;
+    flex-direction: row;
+    .item-image {
+      border: 1px $light-violet-color solid;
       width: 15%;
-      img{
-        width:100%;
-        
+      img {
+        width: 100%;
       }
     }
-
+  }
+  #error-block {
+    height: $section-height;
+    padding: 4rem 0;
+    .err-message {
+      color: red;
+      text-align: center;
+    }
   }
 }

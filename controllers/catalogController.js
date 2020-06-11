@@ -8,7 +8,6 @@ exports.index = async (req, res) => {
   // const bestCurrentDeal = await Item.getRecommendedItem(categories, 0);
   res.render('pages/index', {
     categories,
-    bestCurrentDeal: null,
     path: '/catalog',
   });
 };
@@ -16,7 +15,7 @@ exports.index = async (req, res) => {
 exports.category_get = async (req, res) => {
   const categoryId = req.params.categoryid;
   const items = await Item.getCategoryItems(categoryId, 12);
-  return res.render('pages/category', {
+  res.render('pages/category', {
     path: null,
     items,
   });

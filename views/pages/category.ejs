@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<%- include("../partials/head") -%>
-	</head>
-	<body>
-		<%- include("../partials/header") %>
+  <head>
+    <%- include("../partials/head") -%>
+  </head>
+  <body>
+    <%- include("../partials/header") %>
 
     <main>
       <section id="category-section">
         <div class="top-level-container">
           <h1 class="title">category title</h1>
-        <div class="items">
-          <% if(items != undefined) {%>
-            <% for(let item of items) {%>
-              <div class="item">
-                <div class="item-image">
-                  <img 
-                    src="<% if (Object.prototype.hasOwnProperty.call(item, 'pictureURLLarge')) {%><%= item.pictureURLLarge[0] %><%}else if(Object.prototype.hasOwnProperty.call(item, 'galleryURL')){%><%= item.galleryURL[0] %><%}%>" 
-                    alt="img here"
-                  >
-                </div>
-                <div class="item-details">
-                  <div class="item-title"><span><%= item.title[0] %></span></div>
-                  <div class="item-info">some random info here</div>
-                </div>
+          <div class="items">
+            <% if(items != null) { for(let item of items) {%>
+            <div class="item">
+              <div class="item-image">
+                <img
+                  src="<% if (Object.prototype.hasOwnProperty.call(item, 'pictureURLLarge')) {%><%= item.pictureURLLarge[0] %><%}else if(Object.prototype.hasOwnProperty.call(item, 'galleryURL')){%><%= item.galleryURL[0] %><%}%>"
+                  alt="img here"
+                />
               </div>
+              <div class="item-details">
+                <div class="item-title"><span><%= item.title[0] %></span></div>
+                <div class="item-info">some random info here</div>
+              </div>
+            </div>
+            <%}} else{%>
+            <div id="error-block">
+              <h1 class="err-message">Sorry this category is not available</h1>
+            </div>
             <%}%>
-          <%} else{%>
-            <h1>Sorry this category has ran out of stock please choose another one!</h1>
-          <%}%>
-        </div>
+          </div>
         </div>
       </section>
     </main>
-			
-		<footer>
-			<%- include("../partials/footer") -%>
-		</footer>
-	</body>
+
+    <footer>
+      <%- include("../partials/footer") -%>
+    </footer>
+  </body>
 </html>

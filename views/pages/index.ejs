@@ -1,149 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<%- include("../partials/head") -%>
-	</head>
-	<body>
-			<%- include("../partials/header") %>
-			<main>
-				<section id="intro">
-					<div class="top-level-container">
-						<div class="intro-left-side">
-							<div class="text">
-								<h2>BECAUSE YOU'VE BEEN WORKING TOO</h2>
-								<h2>HARD...</h2>					
-								<h2>OFFER YOURSELF AN AMAZING GIFT</h2>
-							</div>
-							<div class="marketing-pitch">
-								<ul>
-									<li>Fun Stuff</li>
-									<li>Free Shipping</li>
-									<li>Brand New</li>
-									<li>Guilt Free</li>
-								</ul>
-							</div>
-							<div class="intro-btns">
-								<a class="btn" href="#best-deal">TEST MY LUCK</a>
-							</div>
-						</div>
-						<div class="intro-right-side">
-							<img 
-								class="image"
-								src="/img/sleepy-guy.jpg" 
-								alt="Photo by Christian Fregnan on unsplash.com"
-							>
-						</div>
-					</div>
-				</section>
-				<section id="categories">
-					<div class="top-level-container">
-						<div class="section-title">
-							<h1 class="title">CATEGORIES</h1>
-						</div>
-						<div id="categories-wrapper">
-							<% if(categories != undefined) {%>
-								<% for(let {id, name} of categories) {%>
-									<a class="category-block" href="/catalog/category/<%= id %>">
-										<div class="category-name">
-											<span class="name"><%= name %></span>
-										</div>
-									</a>
-								<%}%>
-							<%} else{%>
-								<h1>ERR 404 : Couldn't fetch categories</h1>
-							<%}%>
-						</div>
-						<div>
-							<a class="btn black-btn">BROWSE ALL CATEGORIES</a>
-						</div>
-					</div>
-				</section>
-				<section id="search-item">
-					<div class="top-level-container">
-						<div class="section-title">
-							<h1 class="title">SEARCH ITEM</h1>
-						</div>
-						<div id="images-wrapper">
-							<div class="block-wrapper">
-								<div class="image-block">
-									<img 
-										class="image"
-										src="/img/category-shoes.jpg" 
-										alt="shoes"
-									/>
-								</div>
-								<div class="image-name">
-									<span class="name">FIND</span>
-								</div>
-							</div>
-							<div class="block-wrapper">
-								<div class="image-block">
-									<img 
-										class="image"
-										src="/img/category-other.jpg" 
-										alt="shoes"
-									/>
-								</div>
-								<div class="image-name">
-									<span class="name">A PRODUCT</span>
-								</div>
-							</div>
-							<div class="block-wrapper">
-								<div class="image-block">
-									<img 
-										class="image"
-										src="/img/category-clothing.jpg" 
-										alt="shoes"
-									/>
-								</div>
-								<div class="image-name">
-									<span class="name">USING THE</span>
-								</div>
-							</div>
-							<div class="block-wrapper">
-								<div class="image-block">
-									<img 
-										class="image"
-										src="/img/category-skin-care.jpg" 
-										alt="shoes"
-									/>
-								</div>
-								<div class="image-name">
-									<span class="name">SEARCH BAR</span>
-								</div>
-							</div>
-							<div class="block-wrapper">
-								<div class="image-block">
-									<img 
-										class="image"
-										src="/img/category-tech.jpg" 
-										alt="shoes"
-									/>
-								</div>
-								<div class="image-name">
-									<span class="name">BELOW</span>
-								</div>
-							</div>
-							<div class="block-wrapper">
-								<div class="image-block">
-									<img 
-										class="image"
-										src="/img/category-watches.jpg" 
-										alt="shoes"
-									/>
-								</div>
-								<div class="image-name">
-									<span class="name">GOOD LUCK!</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-			</main>
-			<footer>
-				<%- include("../partials/footer") -%>
-			</footer>
+  <head>
+    <%- include("../partials/head") -%>
+  </head>
+  <body>
+    <%- include("../partials/header") %>
+    <main>
+      <section id="intro">
+        <div class="top-level-container">
+          <div class="intro-left-side">
+            <div class="text">
+              <h2>BECAUSE YOU'VE BEEN WORKING TOO</h2>
+              <h2>HARD...</h2>
+              <h2>OFFER YOURSELF AN AMAZING GIFT</h2>
+            </div>
+            <div class="marketing-pitch">
+              <ul>
+                <li>Fun Stuff</li>
+                <li>Free Shipping</li>
+                <li>Brand New</li>
+                <li>Guilt Free</li>
+              </ul>
+            </div>
+            <div class="intro-btns">
+              <a class="btn" href="#best-deal">TEST MY LUCK</a>
+            </div>
+          </div>
+          <div class="intro-right-side">
+            <img
+              class="image"
+              src="/img/sleepy-guy.jpg"
+              alt="Photo by Christian Fregnan on unsplash.com"
+            />
+          </div>
+        </div>
+      </section>
+      <section id="categories">
+        <div class="top-level-container">
+          <div class="section-title">
+            <h1 class="title">CATEGORIES</h1>
+          </div>
+          <div id="categories-wrapper">
+            <% if(categories != undefined) { for(let {id, name} of
+            categories){%>
+            <a class="category-block" href="/catalog/category/<%= id %>">
+              <div class="category-name">
+                <span class="name"><%= name %></span>
+              </div>
+            </a>
+            <%} } else{%>
+            <div id="error-block">
+              <h1 class="error-message">ERR 404 : Couldn't fetch categories</h1>
+            </div>
+            <%}%>
+          </div>
+          <div>
+            <a class="btn black-btn">BROWSE ALL CATEGORIES</a>
+          </div>
+        </div>
+      </section>
+      <section id="search-item">
+        <div class="top-level-container">
+          <div class="section-title">
+            <h1 class="title">SEARCH ITEM</h1>
+          </div>
+          <div id="images-wrapper">
+            <div class="block-wrapper">
+              <div class="image-block">
+                <img class="image" src="/img/category-shoes.jpg" alt="shoes" />
+              </div>
+              <div class="image-name">
+                <span class="name">FIND</span>
+              </div>
+            </div>
+            <div class="block-wrapper">
+              <div class="image-block">
+                <img class="image" src="/img/category-other.jpg" alt="shoes" />
+              </div>
+              <div class="image-name">
+                <span class="name">A PRODUCT</span>
+              </div>
+            </div>
+            <div class="block-wrapper">
+              <div class="image-block">
+                <img
+                  class="image"
+                  src="/img/category-clothing.jpg"
+                  alt="shoes"
+                />
+              </div>
+              <div class="image-name">
+                <span class="name">USING THE</span>
+              </div>
+            </div>
+            <div class="block-wrapper">
+              <div class="image-block">
+                <img
+                  class="image"
+                  src="/img/category-skin-care.jpg"
+                  alt="shoes"
+                />
+              </div>
+              <div class="image-name">
+                <span class="name">SEARCH BAR</span>
+              </div>
+            </div>
+            <div class="block-wrapper">
+              <div class="image-block">
+                <img class="image" src="/img/category-tech.jpg" alt="shoes" />
+              </div>
+              <div class="image-name">
+                <span class="name">BELOW</span>
+              </div>
+            </div>
+            <div class="block-wrapper">
+              <div class="image-block">
+                <img
+                  class="image"
+                  src="/img/category-watches.jpg"
+                  alt="shoes"
+                />
+              </div>
+              <div class="image-name">
+                <span class="name">GOOD LUCK!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <%- include("../partials/footer") -%>
+    </footer>
 
-		<script type="text/javascript" src="/js/main.js"></script>
-	</body>
+    <script type="text/javascript" src="/js/main.js"></script>
+  </body>
 </html>
