@@ -1,7 +1,6 @@
 const Category = require('../model/category');
 const Item = require('../model/item');
 
-
 exports.index = async (req, res) => {
   const categories = await Category.getHomePageCategories(8);
 

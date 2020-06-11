@@ -26,16 +26,18 @@ class Category {
     const categories = await this.getRootCateroryTree();
 
     // destruct/get data we want
-    const { rootCategoryNode: { childCategoryTreeNodes } } = categories;
+    const {
+      rootCategoryNode: { childCategoryTreeNodes },
+    } = categories;
 
     // construct custom obj
     const categoriesObj = [];
-    // for(const {category:{categoryId, categoryName}} of childCategoryTreeNodes){
-    //   categoriesObj.push({id: categoryId, name: categoryName});
-    // }
-    childCategoryTreeNodes.forEach(({ category: { categoryId, categoryName } }) => {
-      categoriesObj.push({ id: categoryId, name: categoryName });
-    });
+
+    childCategoryTreeNodes.forEach(
+      ({ category: { categoryId, categoryName } }) => {
+        categoriesObj.push({ id: categoryId, name: categoryName });
+      },
+    );
     // randomly select $count categories to showcase on homepage
     const selectedCategories = [];
     const { length } = categoriesObj;
@@ -45,13 +47,6 @@ class Category {
       const index = rn(options);
       let exists = null;
 
-      // make sure we won't duplicate categories
-      // for(let obj of selectedCategories){
-      //   if(categoriesObj[index].id === obj.id){
-      //     exists = true;
-      //   }
-      // }
-      // if(!exists) selectedCategories.push(categoriesObj[index]);
       selectedCategories.forEach((obj) => {
         if (categoriesObj[index].id === obj.id) {
           exists = true;
@@ -61,29 +56,48 @@ class Category {
     }
 
     return selectedCategories;
-  }// end getHomePageCategories
-
+  } // end getHomePageCategories
 
   static async getRootCateroryTree() {
     let categoryTree = null;
-    const versionFilePath = path.join(__dirname, '..', 'data', 'root_category_tree', 'version.json');
-    const categoryTreeFilePath = path.join(__dirname, '..', 'data', 'root_category_tree', 'data.json');
+    const versionFilePath = path.join(
+      __dirname,
+      '..',
+      'data',
+      'root_category_tree',
+      'version.json',
+    );
+    const categoryTreeFilePath = path.join(
+      __dirname,
+      '..',
+      'data',
+      'root_category_tree',
+      'data.json',
+    );
 
     const {
       categoryTreeId,
       categoryTreeVersion,
     } = await ebay.getDefaultCategoryTreeId('EBAY_US');
 
-    const { version: savedVersion } = await loadJsonFile(versionFilePath, 'version retrieved from local storrage');
+    const { version: savedVersion } = await loadJsonFile(
+      versionFilePath,
+      'version retrieved from local storrage',
+    );
 
     // check if there has been any updates
     if (savedVersion === categoryTreeVersion) {
       // load categoreTree from localStorage
-      categoryTree = await loadJsonFile(categoryTreeFilePath, 'categoryTree retrieved from local storrage');
+      categoryTree = await loadJsonFile(
+        categoryTreeFilePath,
+        'categoryTree retrieved from local storrage',
+      );
     } else {
       // request updated data from ebay Api
       // update locally stored version and categoryTree
-      const versionSavedToFile = await this.saveCategoryVersionToFile(categoryTreeVersion);
+      const versionSavedToFile = await this.saveCategoryVersionToFile(
+        categoryTreeVersion,
+      );
       if (!versionSavedToFile) throw new Error("couldn't save version to file");
 
       categoryTree = await ebay.getCategoryTree(categoryTreeId);
@@ -93,11 +107,16 @@ class Category {
     }
 
     return categoryTree;
-  }// end getRootCateroryTree
-
+  } // end getRootCateroryTree
 
   static async saveCategoryTreeToFile(categoryTree) {
-    const filePath = path.join(__dirname, '..', 'data', 'root_category_tree', 'data.json');
+    const filePath = path.join(
+      __dirname,
+      '..',
+      'data',
+      'root_category_tree',
+      'data.json',
+    );
 
     const dataSaved = await saveDataToFile(
       filePath,
@@ -106,8 +125,7 @@ class Category {
     );
 
     return dataSaved;
-  }// end saveCategoryTreeToFile
-
+  } // end saveCategoryTreeToFile
 
   static async saveCategoryVersionToFile(version) {
     // make a version obj
@@ -116,7 +134,13 @@ class Category {
       lastChecked: Date.now(),
     };
 
-    const filePath = path.join(__dirname, '..', 'data', 'root_category_tree', 'version.json');
+    const filePath = path.join(
+      __dirname,
+      '..',
+      'data',
+      'root_category_tree',
+      'version.json',
+    );
 
     const dataSaved = await saveDataToFile(
       filePath,
@@ -125,8 +149,7 @@ class Category {
     );
 
     return dataSaved;
-  }// end saveCategoryVersionToFile
+  } // end saveCategoryVersionToFile
 }
-
 
 module.exports = Category;

@@ -5,5 +5,4 @@ const router = express.Router();
 
 router.get('*', errorController.notFoundPage);
 
-
 module.exports = router;

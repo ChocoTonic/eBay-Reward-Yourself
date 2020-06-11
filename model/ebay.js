@@ -12,5 +12,4 @@ const ebay = new EBay({
   },
 });
 
-
 module.exports = ebay;
