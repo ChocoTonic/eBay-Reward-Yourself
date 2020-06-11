@@ -1,41 +1,35 @@
+const pagination = require('pagination');
 const ebay = require('./ebay');
 
 // util funcitons -------------
 
 // Model--------------------------------------
 class Item {
-  static async getRecommendedItem(categories, index) {
-    // arbitrarily pick element in [$index] position of category array
-    const [data] = await ebay.findItemsByCategory(categories[index].id);
-    const {
-      searchResult: [{ item }],
-    } = data;
-
-    // ad hoc : get 1 single item from itemArr
-    // check if selected item has picture prop, if not recurse test next item
-    if (Object.prototype.hasOwnProperty.call(item[0], 'pictureURLLarge')) {
-      return item[0];
-    }
-
-    const nextIndex = index + 1;
-    const recursion = await this.getRecommendedItem(categories, nextIndex);
-    return recursion;
-  }
-
-  static async getCategoryItems(categoryId, entriesPerPage) {
+  static async getCategoryItems(categoryId, entriesPerPage, pageNumber) {
     try {
       const [data] = await ebay.findItemsAdvanced({
         categoryId,
         entriesPerPage,
+        pageNumber,
         filter: 'HideDuplicateItems:true',
       });
 
       const { searchResult } = data;
       const { item: items } = searchResult[0];
 
-      return items;
+      // server side pagination
+      const paginator = new pagination.SearchPaginator({
+        prelink: '/',
+        current: pageNumber,
+        rowsPerPage: entriesPerPage,
+        totalResult: entriesPerPage * 100,
+      });
+
+      const paginationData = paginator.getPaginationData();
+
+      return { items, paginationData };
     } catch (err) {
-      return null;
+      return { items: null, paginationData: null };
     }
   }
 }

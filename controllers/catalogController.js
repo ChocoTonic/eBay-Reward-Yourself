@@ -13,10 +13,19 @@ exports.index = async (req, res) => {
 };
 
 exports.category_get = async (req, res) => {
-  const categoryId = req.params.categoryid;
-  const items = await Item.getCategoryItems(categoryId, 12);
+  const page = parseInt(req.query.page, 10);
+  const categoryId = req.params.categoryid || 0;
+  const pageNumber = page > 0 && page <= 100 && page ? page : 1;
+
+  const { items, paginationData } = await Item.getCategoryItems(
+    categoryId,
+    5,
+    pageNumber,
+  );
   res.render('pages/category', {
     path: null,
     items,
+    paginationData,
+    categoryId,
   });
 };

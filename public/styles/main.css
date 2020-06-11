@@ -15,6 +15,10 @@
   background: black;
   color: white; }
 
+.green-btn {
+  background: #75cb08;
+  color: #f9f9f7; }
+
 header {
   display: flex;
   flex-direction: column; }
@@ -241,33 +245,65 @@ footer {
         #search-item .top-level-container .section-btns .btn:hover {
           background: #3f3f47; }
 
-#category-section .title {
-  color: black; }
-
-#category-section .item {
-  margin-bottom: 1rem;
-  height: 200px;
-  display: flex;
-  flex-direction: row; }
-  #category-section .item .item-image {
-    border: 1px #777990 solid;
-    width: 15%; }
-    #category-section .item .item-image img {
-      width: 100%; }
-
-#category-section #error-block {
-  height: 550px;
-  padding: 4rem 0; }
-  #category-section #error-block .err-message {
-    color: red;
-    text-align: center; }
+#category-items {
+  background: #777990; }
+  #category-items .section-title {
+    padding: 2rem 0; }
+    #category-items .section-title .title {
+      color: #f9f9f7;
+      font-size: 3rem;
+      text-align: center; }
+  #category-items .items-wrapper {
+    background: #f9f9f7; }
+    #category-items .items-wrapper .item {
+      margin: 0 auto;
+      width: 90%;
+      margin-bottom: 1rem;
+      height: 200px;
+      display: flex;
+      flex-direction: row;
+      border-bottom: 1px #777990 solid;
+      padding: 1rem; }
+      #category-items .items-wrapper .item .item-image {
+        border-right: 1px #777990 dashed;
+        width: 20%;
+        overflow: hidden; }
+        #category-items .items-wrapper .item .item-image img {
+          height: 100%; }
+      #category-items .items-wrapper .item .item-details {
+        padding-left: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around; }
+        #category-items .items-wrapper .item .item-details .item-price {
+          font-size: 1.5rem;
+          font-weight: bold; }
+        #category-items .items-wrapper .item .item-details .btn {
+          padding: 0.4rem 1.5rem;
+          min-width: 200px;
+          -webkit-transition: all 200ms ease-out;
+          -moz-transition: all 200ms ease-out;
+          -ms-transition: all 200ms ease-out;
+          -o-transition: all 200ms ease-out;
+          transition: all 200ms ease-out; }
+          #category-items .items-wrapper .item .item-details .btn:hover {
+            background: #f9f9f7;
+            border: 1px #75cb08 solid;
+            color: #528dde; }
+  #category-items #error-block {
+    height: 550px;
+    padding: 4rem 0; }
+    #category-items #error-block .err-message {
+      color: red;
+      text-align: center; }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
 
-html, body {
+html,
+body {
   background: #f9f9f7;
   font-family: Arial, Helvetica, sans-serif; }
 

@@ -7,10 +7,12 @@
     <%- include("../partials/header") %>
 
     <main>
-      <section id="category-section">
+      <section id="category-items">
         <div class="top-level-container">
-          <h1 class="title">category title</h1>
-          <div class="items">
+          <div class="section-title">
+            <h1 class="title">CATEGORY</h1>
+          </div>
+          <div class="items-wrapper">
             <% if(items != null) { for(let item of items) {%>
             <div class="item">
               <div class="item-image">
@@ -20,11 +22,55 @@
                 />
               </div>
               <div class="item-details">
-                <div class="item-title"><span><%= item.title[0] %></span></div>
-                <div class="item-info">some random info here</div>
+                <div class="item-title">
+                  <span><%= item.title[0].toUpperCase() %></span>
+                </div>
+                <div class="item-price">
+                  <%= item.sellingStatus[0].currentPrice[0].__value__ %> $
+                </div>
+                <div class="item-actions">
+                  <a
+                    class="btn green-btn"
+                    target="_"
+                    href="<%= items[0].viewItemURL[0] %>"
+                    >ORDER ON EBAY</a
+                  >
+                </div>
               </div>
             </div>
-            <%}} else{%>
+            <%}%>
+            <div id="category-pagination">
+              <%if (paginationData.first) {%>
+              <a
+                href="/catalog/category/<%= categoryId %>?page=<%= paginationData.first %>"
+              >
+                First
+              </a>
+              <% } %> <%if (paginationData.previous) {%>
+              <a
+                href="/catalog/category/<%= categoryId %>?page=<%= paginationData.previous %>"
+              >
+                Previous
+              </a>
+              <% } %> <% paginationData.range.forEach((page)=>{ %>
+              <a href="/catalog/category/<%= categoryId %>?page=<%= page %>">
+                <%= page %>
+              </a>
+              <% }) %> <%if (paginationData.next) {%>
+              <a
+                href="/catalog/category/<%= categoryId %>?page=<%= paginationData.next %>"
+              >
+                Next
+              </a>
+              <% } %> <%if (paginationData.last) {%>
+              <a
+                href="/catalog/category/<%= categoryId %>?page=<%= paginationData.last %>"
+              >
+                Last
+              </a>
+              <% } %>
+            </div>
+            <%} else{%>
             <div id="error-block">
               <h1 class="err-message">Sorry this category is not available</h1>
             </div>

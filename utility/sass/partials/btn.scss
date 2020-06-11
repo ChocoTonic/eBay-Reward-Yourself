@@ -1,26 +1,30 @@
-@mixin btn-hover(){
+@mixin btn-hover() {
   background: $white-color;
   color: $light-violet-color;
   border-color: $light-violet-color;
   font-weight: bold;
 }
 
-.btn{
+.btn {
   background: $light-violet-color;
   color: $white-color;
   padding: 0.8rem 3rem;
-  font-size:1.2rem;
-  border:2px $white-color solid;
+  font-size: 1.2rem;
+  border: 2px $white-color solid;
   display: block;
   min-width: 250px;
   display: inline-block;
   text-align: center;
-  &:hover{
-    cursor:pointer;
+  &:hover {
+    cursor: pointer;
   }
 }
 
-.black-btn{
+.black-btn {
   background: black;
   color: white;
+}
+.green-btn {
+  background: $green-color;
+  color: $white-color;
 }
