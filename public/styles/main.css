@@ -19,6 +19,10 @@
   background: #75cb08;
   color: #f9f9f7; }
 
+.blue-btn {
+  background: #528dde;
+  color: #f9f9f7; }
+
 header {
   display: flex;
   flex-direction: column; }
@@ -31,11 +35,12 @@ header {
       header nav ul li {
         list-style: none; }
         header nav ul li a {
+          border-bottom: 1px #191a39 solid;
           display: block;
           margin: auto;
           color: #191a39;
           text-decoration: none;
-          margin-right: 0.2rem;
+          margin-right: 0.3rem;
           padding: 0.5rem 0.7rem;
           font-size: 1.1rem; }
           header nav ul li a:hover, header nav ul li a.active {
@@ -53,7 +58,7 @@ header {
     flex-direction: row;
     align-items: baseline; }
     header .header-title .logo-container {
-      width: 70px; }
+      width: 50px; }
       header .header-title .logo-container .logo {
         width: 100%; }
     header .header-title .title {
@@ -69,6 +74,34 @@ footer {
     flex-direction: column;
     justify-content: center;
     font-size: 0.9rem; }
+
+#search-bar {
+  background: #f9f9f7; }
+  #search-bar .top-level-container #search-categories {
+    padding: 0.5rem 0;
+    margin: 0 auto;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end; }
+    #search-bar .top-level-container #search-categories input,
+    #search-bar .top-level-container #search-categories select,
+    #search-bar .top-level-container #search-categories .btn {
+      padding: 0.3rem;
+      border-radius: 0;
+      border: 1px #3f3f47 solid; }
+    #search-bar .top-level-container #search-categories input {
+      width: 50%; }
+    #search-bar .top-level-container #search-categories select {
+      width: 30%;
+      background: #f9f9f7;
+      color: #3f3f47;
+      text-align: center;
+      font-size: 0.8rem; }
+    #search-bar .top-level-container #search-categories .btn {
+      width: 20%;
+      min-width: 150px;
+      background: #777990; }
 
 #intro {
   height: 550px;
@@ -174,41 +207,40 @@ footer {
           min-width: 150px;
           text-align: center; }
 
-#search-item {
+#store-ads {
   min-height: 550px;
   color: #f9f9f7;
   background: #3f3f47; }
-  #search-item .top-level-container {
+  #store-ads .top-level-container {
     height: 100%;
-    padding: 2rem 0;
+    padding: 3rem 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center; }
-    #search-item .top-level-container .section-title {
+    #store-ads .top-level-container .section-title {
       margin-bottom: 2rem; }
-      #search-item .top-level-container .section-title .title {
+      #store-ads .top-level-container .section-title .title {
         font-size: 3rem; }
-    #search-item .top-level-container #images-wrapper {
-      margin: 0 auto;
+    #store-ads .top-level-container #images-wrapper {
       width: 80%;
-      gap: 1rem;
+      gap: 0.5rem;
       display: grid;
-      grid-template-columns: repeat(3, 33%); }
-      #search-item .top-level-container #images-wrapper .block-wrapper {
+      grid-template-columns: repeat(3, 32.3%); }
+      #store-ads .top-level-container #images-wrapper .block-wrapper {
         position: relative; }
-        #search-item .top-level-container #images-wrapper .block-wrapper .image-block {
+        #store-ads .top-level-container #images-wrapper .block-wrapper .image-block {
           position: relative;
           padding-top: 100%;
           overflow: hidden; }
-          #search-item .top-level-container #images-wrapper .block-wrapper .image-block:hover > .image {
+          #store-ads .top-level-container #images-wrapper .block-wrapper .image-block:hover > .image {
             -webkit-transform: scale(1.1);
             -moz-transform: scale(1.1);
             -ms-transform: scale(1.1);
             -o-transform: scale(1.1);
             transform: scale(1.1);
             filter: blur(2px); }
-          #search-item .top-level-container #images-wrapper .block-wrapper .image-block .image {
+          #store-ads .top-level-container #images-wrapper .block-wrapper .image-block .image {
             z-index: 1;
             position: absolute;
             top: 0;
@@ -219,7 +251,7 @@ footer {
             -ms-transition: all 800ms ease-out;
             -o-transition: all 800ms ease-out;
             transition: all 800ms ease-out; }
-        #search-item .top-level-container #images-wrapper .block-wrapper .image-name {
+        #store-ads .top-level-container #images-wrapper .block-wrapper .image-name {
           position: absolute;
           width: 100%;
           bottom: 2rem;
@@ -232,18 +264,6 @@ footer {
           font-weight: bold;
           font-size: 1.2rem;
           text-align: center; }
-    #search-item .top-level-container .section-btns {
-      display: flex;
-      flex-direction: row; }
-      #search-item .top-level-container .section-btns .btn {
-        margin-right: 0.5rem;
-        -webkit-transition: all 200ms ease-out;
-        -moz-transition: all 200ms ease-out;
-        -ms-transition: all 200ms ease-out;
-        -o-transition: all 200ms ease-out;
-        transition: all 200ms ease-out; }
-        #search-item .top-level-container .section-btns .btn:hover {
-          background: #3f3f47; }
 
 #category-items {
   background: #777990; }
@@ -251,8 +271,30 @@ footer {
     padding: 2rem 0; }
     #category-items .section-title .title {
       color: #f9f9f7;
-      font-size: 3rem;
+      font-size: 2.5rem;
       text-align: center; }
+  #category-items #search-categories {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center; }
+    #category-items #search-categories input,
+    #category-items #search-categories select,
+    #category-items #search-categories .btn {
+      padding: 0.3rem;
+      border-radius: 0;
+      border: 1px #3f3f47 solid; }
+    #category-items #search-categories input {
+      width: 40%; }
+    #category-items #search-categories select {
+      width: 30%;
+      max-width: 200px;
+      background: #f9f9f7;
+      color: #3f3f47;
+      text-align: center;
+      font-size: 0.8rem; }
+    #category-items #search-categories .btn {
+      min-width: 150px; }
   #category-items .items-wrapper {
     background: #f9f9f7; }
     #category-items .items-wrapper .item {
@@ -267,7 +309,8 @@ footer {
       #category-items .items-wrapper .item .item-image {
         border-right: 1px #777990 dashed;
         width: 20%;
-        overflow: hidden; }
+        overflow: hidden;
+        min-width: 150px; }
         #category-items .items-wrapper .item .item-image img {
           height: 100%; }
       #category-items .items-wrapper .item .item-details {

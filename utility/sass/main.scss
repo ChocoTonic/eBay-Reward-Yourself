@@ -4,9 +4,10 @@
 @import 'partials/header.scss';
 @import 'partials/footer.scss';
 //index page
+@import 'partials/index-page/search-bar.scss';
 @import 'partials/index-page/intro.scss';
 @import 'partials/index-page/categories.scss';
-@import 'partials/index-page/search-item.scss';
+@import 'partials/index-page/store-ads.scss';
 //category page
 @import 'partials/category-page/category-items.scss';
 

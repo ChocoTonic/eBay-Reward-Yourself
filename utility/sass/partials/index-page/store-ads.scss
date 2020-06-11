@@ -1,51 +1,50 @@
-#search-item{
+#store-ads {
   min-height: $section-height;
   color: $white-color;
   background: $gray-color;
-  .top-level-container{
-    height:100%;
-    padding:2rem 0;
+  .top-level-container {
+    height: 100%;
+    padding: 3rem 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     // border:1px white solid;
-    .section-title{
-        margin-bottom: 2rem;
-        .title{
-          font-size:3rem;
-        }
+    .section-title {
+      margin-bottom: 2rem;
+      .title {
+        font-size: 3rem;
+      }
     }
-    #images-wrapper{
-      margin:0 auto;
-      width:80%;
-      gap: 1rem;
+    #images-wrapper {
+      width: 80%;
+      gap: 0.5rem;
       // border:1px blue solid;
-      display:grid;
-      grid-template-columns: repeat(3, 33%);
-      .block-wrapper{
+      display: grid;
+      grid-template-columns: repeat(3, 32.3%);
+      .block-wrapper {
         // background:white;
-        position:relative;
-        .image-block{
-          position:relative;
-          padding-top:100%;
+        position: relative;
+        .image-block {
+          position: relative;
+          padding-top: 100%;
           // border: 1px $gray-color solid;
           overflow: hidden;
-          &:hover > .image{
+          &:hover > .image {
             @include transform(scale(1.1));
             filter: blur(2px);
           }
-          .image{
-            z-index:1;
-            position:absolute;
+          .image {
+            z-index: 1;
+            position: absolute;
             // width:100%;
-            top:0;
-            left:0;
+            top: 0;
+            left: 0;
             height: 100%;
             @include transition(all, 800ms, ease-out);
           }
         }
-        .image-name{
+        .image-name {
           position: absolute;
           width: 100%;
           bottom: 2rem;
@@ -61,17 +60,5 @@
         }
       }
     }
-    .section-btns{
-      display:flex;
-      flex-direction:row;
-      .btn{
-        margin-right:0.5rem;
-        @include transition(all, 200ms, ease-out);
-          &:hover{
-            background: $gray-color;
-          }
-      }
-    }
   }
 }
-

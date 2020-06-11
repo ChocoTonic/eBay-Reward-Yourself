@@ -3,31 +3,36 @@
     <nav>
       <ul>
         <li>
-          <a href="/catalog" class="<% if(path === '/catalog') {%>active<%}%>">HOME</a>
+          <a href="/catalog" class="<% if(path === '/catalog') {%>active<%}%>"
+            >HOME</a
+          >
         </li>
         <li>
-          <a href="#" class="">CATEGORIES</a>
+          <a href="#" class="<% if(path === '/catalog/category') {%>active<%}%>"
+            >CATEGORIES</a
+          >
         </li>
         <li>
-          <a href="#search-item" class="">SEARCH-ITEM</a>
+          <a
+            href="/catalog/about"
+            class="<% if(path === '/catalog/about') {%>active<%}%>"
+            >ABOUT</a
+          >
         </li>
         <li>
-          <a href="/catalog/about" class="<% if(path === '/catalog/about') {%>active<%}%>">ABOUT</a>
-        </li>
-        <li>
-          <a href="/catalog/contact" class="<% if(path === '/catalog/contact') {%>active<%}%>">CONTACT</a>
+          <a
+            href="/catalog/contact"
+            class="<% if(path === '/catalog/contact') {%>active<%}%>"
+            >CONTACT</a
+          >
         </li>
       </ul>
     </nav>
     <div class="header-title">
       <div class="logo-container">
-        <img 
-          class="logo"
-          src="/img/logo.png" 
-          alt="site logo"
-        >
+        <img class="logo" src="/img/logo.png" alt="site logo" />
       </div>
-      <h1 class="title">EBAY REWARDS</h1>
+      <h2 class="title">EBAY REWARDS</h2>
     </div>
   </div>
 </header>

@@ -4,8 +4,35 @@
     padding: 2rem 0;
     .title {
       color: $white-color;
-      font-size: 3rem;
+      font-size: 2.5rem;
       text-align: center;
+    }
+  }
+  #search-categories {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    & input,
+    & select,
+    & .btn {
+      padding: 0.3rem;
+      border-radius: 0;
+      border: 1px $gray-color solid;
+    }
+    input {
+      width: 40%;
+    }
+    select {
+      width: 30%;
+      max-width: 200px;
+      background: $white-color;
+      color: $gray-color;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    .btn {
+      min-width: 150px;
     }
   }
 
@@ -25,6 +52,7 @@
         border-right: 1px $light-violet-color dashed;
         width: 20%;
         overflow: hidden;
+        min-width: 150px;
         img {
           height: 100%;
         }

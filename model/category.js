@@ -39,7 +39,10 @@ class Category {
         categoriesObj.push({ id: categoryId, name: categoryName });
       },
     );
-    // randomly select $count categories to showcase on homepage
+    // return all categories if $count equals "ALL" string
+    // else return $count categories
+    if (count === 'ALL') return categoriesObj;
+
     const selectedCategories = [];
     const { length } = categoriesObj;
     const options = { min: 0, max: length - 1, integer: true };

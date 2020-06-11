@@ -10,7 +10,19 @@
       <section id="category-items">
         <div class="top-level-container">
           <div class="section-title">
-            <h1 class="title">CATEGORY</h1>
+            <h1 class="title"><%= selectedCategory.name.toUpperCase() %></h1>
+          </div>
+          <div id="search-categories">
+            <input type="text" placeholder="Search For Anything" />
+            <select name="categories" id="category-option">
+              <option value="null" selected>All Categories</option>
+              <%categories.forEach(({id, name})=>{%>
+              <option value="<%= id %>">
+                <%= name %>
+              </option>
+              <%})%>
+            </select>
+            <a href="#" class="btn blue-btn">SEARCH</a>
           </div>
           <div class="items-wrapper">
             <% if(items != null) { for(let item of items) {%>

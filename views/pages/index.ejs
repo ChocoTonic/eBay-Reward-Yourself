@@ -6,6 +6,22 @@
   <body>
     <%- include("../partials/header") %>
     <main>
+      <section id="search-bar">
+        <div class="top-level-container">
+          <div id="search-categories">
+            <input type="text" placeholder="Search For Anything" />
+            <select name="categories" id="category-option">
+              <option value="null" selected>All Categories</option>
+              <%categories.forEach(({id, name})=>{%>
+              <option value="<%= id %>">
+                <%= name %>
+              </option>
+              <%})%>
+            </select>
+            <a href="#" class="btn blue-btn">SEARCH</a>
+          </div>
+        </div>
+      </section>
       <section id="intro">
         <div class="top-level-container">
           <div class="intro-left-side">
@@ -21,9 +37,6 @@
                 <li>Brand New</li>
                 <li>Guilt Free</li>
               </ul>
-            </div>
-            <div class="intro-btns">
-              <a class="btn" href="#best-deal">TEST MY LUCK</a>
             </div>
           </div>
           <div class="intro-right-side">
@@ -59,10 +72,10 @@
           </div>
         </div>
       </section>
-      <section id="search-item">
+      <section id="store-ads">
         <div class="top-level-container">
           <div class="section-title">
-            <h1 class="title">SEARCH ITEM</h1>
+            <h1 class="title">SEARCH</h1>
           </div>
           <div id="images-wrapper">
             <div class="block-wrapper">
@@ -70,7 +83,7 @@
                 <img class="image" src="/img/category-shoes.jpg" alt="shoes" />
               </div>
               <div class="image-name">
-                <span class="name">FIND</span>
+                <span class="name">ANYTHING</span>
               </div>
             </div>
             <div class="block-wrapper">
@@ -78,7 +91,7 @@
                 <img class="image" src="/img/category-other.jpg" alt="shoes" />
               </div>
               <div class="image-name">
-                <span class="name">A PRODUCT</span>
+                <span class="name">USING</span>
               </div>
             </div>
             <div class="block-wrapper">
@@ -90,7 +103,7 @@
                 />
               </div>
               <div class="image-name">
-                <span class="name">USING THE</span>
+                <span class="name">THE</span>
               </div>
             </div>
             <div class="block-wrapper">
@@ -102,7 +115,7 @@
                 />
               </div>
               <div class="image-name">
-                <span class="name">SEARCH BAR</span>
+                <span class="name">SEARCH</span>
               </div>
             </div>
             <div class="block-wrapper">
@@ -110,7 +123,7 @@
                 <img class="image" src="/img/category-tech.jpg" alt="shoes" />
               </div>
               <div class="image-name">
-                <span class="name">BELOW</span>
+                <span class="name">BAR</span>
               </div>
             </div>
             <div class="block-wrapper">
@@ -122,7 +135,7 @@
                 />
               </div>
               <div class="image-name">
-                <span class="name">GOOD LUCK!</span>
+                <span class="name">ON TOP</span>
               </div>
             </div>
           </div>

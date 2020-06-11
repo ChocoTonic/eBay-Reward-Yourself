@@ -15,6 +15,7 @@ exports.index = async (req, res) => {
 exports.category_get = async (req, res) => {
   const page = parseInt(req.query.page, 10);
   const categoryId = req.params.categoryid || 0;
+  // 0 < pageNumber < 100 or default 1
   const pageNumber = page > 0 && page <= 100 && page ? page : 1;
 
   const { items, paginationData } = await Item.getCategoryItems(
@@ -22,10 +23,17 @@ exports.category_get = async (req, res) => {
     5,
     pageNumber,
   );
+  // get all categories to populate list
+  const categories = await Category.getHomePageCategories('ALL');
+  const selectedCategory = categories.find((category) => {
+    return category.id === categoryId;
+  });
   res.render('pages/category', {
-    path: null,
+    path: '/catalog/category',
     items,
     paginationData,
     categoryId,
+    categories,
+    selectedCategory,
   });
 };
